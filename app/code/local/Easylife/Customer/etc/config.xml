@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Easylife_Customer>
+            <version>0.0.1</version>
+        </Easylife_Customer>
+    </modules>
+    <global>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <customer_grid>Easylife_Customer_Block_Adminhtml_Customer_Grid</customer_grid><!-- rewrite the customer grid -->
+                </rewrite>
+            </adminhtml>
+        </blocks>
+    </global>
+</config>
