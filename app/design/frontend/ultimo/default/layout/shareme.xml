@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_product_view>
+        <reference name="head">
+            <action method="addCss"><styles>shareme/css/styles.css</styles></action>
+            <action method="addItem" ifconfig="shareme/like_page/enabled">
+                <type>js_css</type>
+                <styles>prototype/windows/themes/alphacube.css</styles>
+            </action>
+            <action method="addJs"><script>prototype/effects.js</script></action>
+            <action method="addJs" ifconfig="shareme/like_page/enabled"><script>prototype/window.js</script></action>
+            <action method="addJs" ifconfig="shareme/like_page/enabled"><script>prototype/effects.js</script></action>
+            <action method="addJs"><styles>shareme/ourpage.js</styles></action>
+            <block type="shareme/wrap" template="shareme/wrap.phtml" name="shareme.facebook.wrapper" />
+        </reference>
+        <reference name="product.info">
+            <block type="core/text_list" name="product.info.other" as="other" >
+                <block type="shareme/shareme" name="shareme" template="shareme/shareme.phtml" />
+            </block>
+            <block type="shareme/shareme" name="shareme.direct" as="shareme_direct" template="shareme/shareme.phtml" />
+        </reference>
+    </catalog_product_view>
+    <checkout_cart_index>
+        <reference name="head">
+            <action method="addCss"><styles>shareme/css/styles.css</styles></action>
+        </reference>
+    </checkout_cart_index>
+</layout> 

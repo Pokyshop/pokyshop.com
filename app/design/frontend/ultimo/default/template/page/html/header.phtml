@@ -1,0 +1,269 @@
+<?php /*?>S:VA - Start Page Loading Effect<?php */?>
+<style>
+.spinner{text-align:center; width:100%; margin:19% 0; color:#f77c4c;}
+#spinner {
+	position: fixed; left: 0px; 	top: 0px; width: 100%; 	height: 100%; 	z-index: 9999;
+	background: 50% 50% no-repeat rgb(249,249,249);
+}
+</style>
+<script type="text/javascript">
+jQuery(window).load(function() {
+	jQuery("#spinner").fadeOut("slow");
+})
+</script>
+<div id="spinner"><div class="spinner"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>
+<?php /*?>S:VA - End Page Loading Effect<?php */?>
+
+<?php	
+	$theme = $this->helper('ultimo');
+	$d = $theme->getDesignCfgSection();
+	
+	//Header settings
+	$headerCss = array();
+	
+	if ($theme->isColor($d['header']['inner_bg_color']))
+	{
+		$headerCss[] = 'show-bg';
+	}
+	else
+	{
+		//If header has no color and menu is stretched, header is also stretched
+		if ($d['nav']['stretched'])
+		{
+			$headerCss[] = 'stretched';
+		}
+	}
+	
+	//Menu settings
+	$navCss = array();
+	
+	//Is menu stretched (full available width, margins are removed)
+	if ($d['nav']['stretched'])
+	{
+		$navCss[] = 'stretched';
+	}
+	
+	//If header or menu have bg color, nav also has bg color
+	if ($theme->isColor($d['header']['inner_bg_color']))
+	{
+		$navCss[] = 'show-bg';
+	}
+	elseif ($theme->isColor($d['main']['inner_bg_color']))
+	{
+		$navCss[] = 'show-bg';
+	}
+?>
+
+<div class="header-container" id="top"> 
+  <!-- start: user-menu -->
+  <div class="user-menu clearer top-menus">
+    <div class="container">
+      <div class="social-links left">
+        <ul>
+          <li><a title="Follow us on Twitter" target="_blank" href="https://twitter.com/pokyshop" class="first"> <img alt="twitter" src="<?php echo $this->getSkinUrl('images/social/twitter.png') ?>"> </a> </li>
+          <li><a title="Join us on Facebook" target="_blank" href="https://www.facebook.com/pages/pokyshopcom/335131776671161"> <img alt="facebook" src="<?php echo $this->getSkinUrl('images/social/facebook.png') ?>"> </a></li>
+          <li><a title="Join us on Google Plus" target="_blank" href="https://plus.google.com/u/0/104184118365463258982"> <img alt="google" src="<?php echo $this->getSkinUrl('images/social/googleplus.png') ?>"> </a></li>
+          <li><a title="Follow us on pinterest" target="_blank" href="https://www.pinterest.com/pokyshop/"> <img alt="pinterest" src="<?php echo $this->getSkinUrl('images/social/pinterest.png') ?>"> </a></li>
+          <li><a title="Follow us on instagram" target="_blank" href="https://instagram.com/pokyshop/"> <img alt="instagram" src="<?php echo $this->getSkinUrl('images/social/instagram.png') ?>"> </a></li>
+        </ul>
+      </div>
+      <div class="hide-sticky"><?php echo $this->getChildHtml('cart_sidebar'); ?></div>
+      <div class="after-mini-cart"></div>
+    </div>
+  </div>
+  <!-- end: user-menu -->
+  
+  <div class="header<?php if($headerCss) echo " " . implode(" ", $headerCss); ?>" id="stickyHeader">
+  <div class="container">
+    <div class="grid-full">
+      <div class="header-top clearer hide-sticky">
+        <?php if ($tmp = $this->getChildHtml('block_header_top_help')): ?>
+        <div class="block_header_top_help item item-left"><?php echo $tmp; ?></div>
+        <?php endif; ?>
+        <?php if ($tmp = $this->getChildHtml('block_header_links_upper')): ?>
+        <div class="block_header_links_upper item item-left"><?php echo $tmp; ?></div>
+        <?php endif; ?>
+        <?php /*?><div class="item item-left hide-below-960">
+                    <p class="welcome-msg"><?php echo $this->getWelcome(); ?> <?php echo $this->getAdditionalHtml(); ?></p>
+                </div><?php */?>
+        
+		<?php /*?><?php if( !Mage::getSingleton('customer/session')->isLoggedIn() ){?>
+        <div class="right" style="margin-left:20px;"><?php echo $this->getChildHtml('inchoo_socialconnect_checkout_google_button'); ?></div>
+        <div class="right"><?php echo $this->getChildHtml('inchoo_socialconnect_checkout_facebook_button'); ?></div>
+        <?php } ?><?php */?>
+        
+        <?php echo $this->getChildHtml('currency'); ?> <?php echo $this->getChildHtml('store_language'); ?>
+        <?php if ($tmp = $this->getChildHtml('block_header_top_right')): ?>
+        <div class="block_header_top_right item item-right"><?php echo $tmp; ?></div>
+        <?php endif; ?>
+      </div>
+      <?php echo $this->getChildHtml('topContainer'); ?>
+      <div class="header-main v-grid-container">
+        <div class="logo-wrapper grid12-4 v-grid">
+          <?php if ($this->getIsHomePage()):?>
+          <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+          <?php else:?>
+          <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+          <?php endif?>
+        </div>
+        
+        <!--<div class="grid12-8 v-grid">--> <!-- TODO:remove test!!!!!!!!!!!!!! -->
+        
+        <div class="header-top-search-wrapper grid12-4 v-grid clearer"> <?php echo $this->getChildHtml('topSearch'); ?>
+          <?php /*?><a class="advanced-search-link" href="<?php echo Mage::getURL(''); ?>catalogsearch/advanced/"><?php print $this->__('Advanced Search'); ?></a><?php */?>
+        </div>
+        <div class="user-menu clearer grid12-4 v-grid">
+          <?php /*?><?php echo $this->getChildHtml('cart_sidebar'); ?>
+                    <div class="after-mini-cart"></div><?php */?>
+          <div class="top-links show-separators">
+            <?php
+                        //Additional custom top links
+                        if ($tmp = $this->getChildHtml('block_header_top_links2'))
+                            echo $tmp;
+                            
+                        //Default Magento top links (page.xml)
+                        if ($theme->getCfg('magento_blocks/top_links'))
+                            echo $this->getChildHtml('topLinks');
+                        
+                        //Custom top links - override default Magento top links
+                        if ($tmp = $this->getChildHtml('block_header_top_links'))
+                            echo $tmp;
+                        ?>
+          </div>
+          <!-- end: top-links --> 
+          
+        </div>
+        <!-- end: user-menu --> 
+        
+        <!--</div>--> <!-- TODO:remove test!!!!!!!!!!! --> 
+        
+      </div>
+      <!-- end: header-main --> 
+      
+    </div>
+    <!-- end: grid unit --> 
+  </div>
+  </div>
+  <!-- end: header -->
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+      <ul class="cd-switcher">
+        <li><a href="#0">Sign in</a></li>
+        <li><a href="#0">New account</a></li>
+      </ul>
+      <div id="cd-login"> <!-- log in form -->
+        <form class="cd-form">
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="signin-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span> </p>
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signin-password">Password</label>
+            <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+            <a href="#0" class="hide-password">Hide</a> <span class="cd-error-message">Error message here!</span> </p>
+          <p class="fieldset">
+            <input type="checkbox" id="remember-me" checked>
+            <label for="remember-me">Remember me</label>
+          </p>
+          <p class="fieldset">
+            <input class="full-width" type="submit" value="Login">
+          </p>
+        </form>
+        <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+        <!-- <a href="#0" class="cd-close-form">Close</a> --> 
+      </div>
+      <!-- cd-login -->
+      
+      <div id="cd-signup"> <!-- sign up form -->
+        <form class="cd-form">
+          <p class="fieldset">
+            <label class="image-replace cd-username" for="signup-username">Username</label>
+            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+            <span class="cd-error-message">Error message here!</span> </p>
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="signup-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span> </p>
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signup-password">Password</label>
+            <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+            <a href="#0" class="hide-password">Hide</a> <span class="cd-error-message">Error message here!</span> </p>
+          <p class="fieldset">
+            <input type="checkbox" id="accept-terms">
+            <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+          </p>
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Create account">
+          </p>
+        </form>
+        
+        <!-- <a href="#0" class="cd-close-form">Close</a> --> 
+      </div>
+      <!-- cd-signup -->
+      
+      <div id="cd-reset-password"> <!-- reset password form -->
+        <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+        <form class="cd-form">
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="reset-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span> </p>
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Reset password">
+          </p>
+        </form>
+        <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+      </div>
+      <!-- cd-reset-password --> 
+      <a href="#0" class="cd-close-form">Close</a> </div>
+    <!-- cd-user-modal-container --> 
+  </div>
+  <div class="nav-container">
+    <div class="nav container clearer<?php if($navCss) echo " " . implode(" ", $navCss); ?>"> <?php echo $this->getChildHtml('topMenu') ?> </div>
+    <!-- end: nav --> 
+  </div>
+  <!-- end: nav-container --> 
+  
+</div> 
+<!-- end: header-container -->
+
+<style>
+.fixed {position: fixed;top: 0;background-color:#FFFFFF;}
+#stickyHeader {width: 100%;z-index:1000; }
+</style>
+<?php /*?><script>
+var sticky 		= document.querySelector('#stickyHeader');
+var origOffsetY = sticky.offsetTop;
+function onScroll(e) {
+	window.scrollY >= origOffsetY ? sticky.classList.add('fixed') : sticky.classList.remove('fixed');
+}
+document.addEventListener('scroll', onScroll);
+</script><?php */?>
+<?php /* Commented by Vaseem to resolve js error?><script type="text/javascript">
+function deselect(e) {
+  $('.pop').slideFadeToggle(function() {
+    e.removeClass('selected');
+  });    
+}
+
+$(function() {
+  $('#feedback').on('click', function() {
+    if($(this).hasClass('selected')) {
+      deselect($(this));               
+    } else {
+      $(this).addClass('selected');
+      $('.pop').slideFadeToggle();
+    }
+    return false;
+  });
+
+  $('.close').on('click', function() {
+    deselect($('#feedback'));
+    return false;
+  });
+});
+
+$.fn.slideFadeToggle = function(easing, callback) {
+  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+};
+</script><?php */?>

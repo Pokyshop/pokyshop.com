@@ -1,0 +1,42 @@
+<?php
+/**
+ * @see Mage_Page_Block_Template_Links
+ */
+?>
+
+<?php if (Mage::helper('ultimo')->getCfg('header/compare')): ?>
+	<?php $tmpHtml = $this->getChildHtml('compareMini'); ?>
+	<?php if ($tmpHtml): ?>
+		<?php echo $tmpHtml; ?>
+	<?php endif;?>
+<?php endif;?>
+    
+<?php $_links = $this->getLinks(); ?>
+<?php if(count($_links)>0): ?>
+<ul class="links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
+    <?php foreach($_links as $_link): ?>
+        <?php if ($_link instanceof Mage_Core_Block_Abstract):?>
+            <?php echo $_link->toHtml() ?>
+        <?php else: ?>
+        	
+			<?php if($_link->getTitle()!='Log In'){?>
+          		<li<?php if($_link->getIsFirst() || $_link->getIsLast()): ?> class="<?php if($_link->getIsFirst()): ?>first<?php endif; ?><?php if($_link->getIsLast()): ?> last<?php endif; ?>"<?php endif; ?> <?php echo $_link->getLiParams() ?>><?php echo $_link->getBeforeText() ?><a href="<?php echo $_link->getUrl() ?>" title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>><?php echo $_link->getLabel() ?></a><?php echo $_link->getAfterText() ?></li>
+          	<?php }else{?>
+          		<li><a id="showLB" href="javascript:void(0);"  title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>><?php echo 'Login/Sign Up';?></a></li>
+          <?php }?>
+          
+        <?php endif;?>
+    <?php endforeach; ?>
+    
+</ul>
+<ul class="links top_products">
+	<?php if(Mage::helper('sarah')->getUserName()){?>
+    	<li><a href="<?php echo $this->getUrl('product'); ?>"><?php echo $this->__('My Products'); ?></a></li>
+    <?php } ?>
+	<li class="p-product"><a href="<?php echo $this->getUrl('postproduct'); ?>"><?php echo $this->__('Post Product'); ?></a></li>
+</ul>
+<?php endif; ?>
+
+<?php if(!Mage::helper('sarah')->getUserName()){?>
+	<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('ajaxlogin/login_popup.phtml')->toHtml();?>
+<?php } ?>

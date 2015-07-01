@@ -1,0 +1,23 @@
+<?php $_product 	= 	$this->getProduct();
+$productCondition	=	$_product->getCmzProductCondition();
+if($productCondition==''){
+?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()){ ?>
+    <div class="add-to-cart">
+        <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><i class="fa fa-cart-arrow-down"></i> <?php echo $buttonTitle ?></span></span></button>
+        <?php if(!$_product->isGrouped()): ?>
+            <div class="qty-wrapper">
+            	<label for="qty"><?php echo $this->__('Qty:') ?></label>
+            	<input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+            </div>
+        <?php endif; ?>
+        <?php echo $this->getChildHtml('', true, true) ?>
+    </div>
+<?php }
+}else{
+	$customerDetails	=	$_product->getCmzCustomerDetails();?>
+	<div class="add-to-cart"><?php echo $customerDetails;?></div>
+<?php 
+}
+?>

@@ -1,0 +1,422 @@
+<?php
+/**
+ * @see Mage_Page_Block_Template_Links
+ */
+?>
+
+<?php /*?><?php $_links = $this->getLinks(); ?>
+<?php if(count($_links)>0): ?>
+<ul class="links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
+    <?php foreach($_links as $_link): ?>
+        <?php if ($_link instanceof Mage_Core_Block_Abstract):?>
+            <?php echo $_link->toHtml() ?>
+        <?php else: ?>
+          <?php if($_link->getTitle()!='Log In'){?>
+          <li<?php if($_link->getIsFirst()||$_link->getIsLast()): ?> class="<?php if($_link->getIsFirst()): ?>first<?php endif; ?><?php if($_link->getIsLast()): ?> last<?php endif; ?>"<?php endif; ?> <?php echo $_link->getLiParams() ?>><?php echo $_link->getBeforeText() ?><a href="<?php echo $_link->getUrl() ?>" title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>><?php echo $_link->getLabel() ?></a><?php echo $_link->getAfterText() ?></li>
+          <?php }else{?>
+          <li><a href="#info-login-create" id="login-create" class="fancybox"  title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>><?php echo 'Login/Create Account';?></a></li>
+          <?php }?>
+        <?php endif;?>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>
+<style type="text/css">
+#lightboxBlackOverlay {
+	display:none;
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 100;
+	opacity:0.5;
+}
+#lightboxContent {
+	display:none;
+	position:fixed;
+	left:50%;
+	margin-left:-270px;
+	z-index:1001;
+}
+</style><?php */?>
+
+<!--<a id="showLB" href="javascript:void(0);">Show Panel</a>-->
+<div id="lightboxContent">
+  <div class="signup-cont-box"> <?php echo $this->getMessagesBlock()->getGroupedHtml() ?> <a id="closeLB" title="Close" href="javascript:void(0);" class="cl-btn gtm-track">x</a>
+    <div class="tp-logo-w">
+      <div class="lgowrap"> <img alt="" src="/skin/frontend/ultimo/default/images/logo.png"> </div>
+    </div>
+    <div class="clear"></div>
+    <div id="login_popup_response_error"></div>
+    <div>
+      <div class="sign-left fl">
+        <p class="sign-tptxt">Existing user? <span>Login</span></p>
+        <div class="clear"></div>
+        <form action="#" method="post" id="g-form-login">
+        
+          <span class="fieldinfo fl">Email Address<span class="redcolor">*</span></span>
+          <input type="text" name="login[username]" value="" id="gregistered-email" class="input-text required-entry validate-email sign-text-field" title="<?php echo $this->__('Email Address') ?>" />
+          <div class="clear"></div>
+          
+          <span class="fieldinfo fl">Password<span class="redcolor">*</span></span>
+          <input type="password" name="login[password]" class="input-text required-entry validate-password sign-text-field" id="gregistered-password" title="<?php echo $this->__('Password') ?>" />
+          <div class="clear"></div>
+          
+          <?php //echo $this->getChildHtml('form.additional.info'); ?>
+          <?php //echo $this->getChildHtml('persistent.remember.me'); ?>
+          <?php //echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
+          <span class="sig-forgt-text fr"><a class="gtm-track" href="#" id="gcheck-forgotpass">Forgot Password?</a> </span>
+          <label class="sendemalibox fl">
+            <input type="checkbox" class="fl mar-r10" name="is_remember">
+            Remember Me</label>
+          <div class="clear"></div>
+          
+          <div class="snlogin-wrap"> 
+            <!--<a href="#" class="snlogin-btn gtm-track"></a> -->
+            <div id="footer-ajax-loader1" class="hidden"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>
+            <button type="submit" class="button" title="<?php echo $this->__('Login') ?>" name="submit-login" id="submit-login"><span><span class="snlogin-btn gtm-track"><?php echo $this->__('Login') ?></span></span></button>
+          </div>
+        </form>
+        <form action="<?php echo $this->getUrl('*/*/forgotpasswordpost') ?>" method="post" id="gform-forgot-password" style="display:none">
+          <div class="fieldset" style="padding-left:16px;margin-top:15px;">
+            <h2 class="legend"><?php echo $this->__('Retrieve your password here') ?></h2>
+            <p><?php echo $this->__('Please enter your email address below. You will receive a link to reset your password.') ?></p>
+            <ul class="form-list">
+              <li>
+                <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                <div class="input-box">
+                  <input type="text" name="email" alt="email" id="gforgot-emai-address" class="input-text required-entry validate-email" value="" />
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="buttons-set btn-new">
+            <div id="footer-ajax-loader3"></div>
+            <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+          </div>
+        </form>
+      </div>
+      <div class="sign-right fl">
+        <form action="#" id="g-form-register-customer">
+        	<!--<input id="firstname" class="input-text required-entry" type="text" title="First Name" value="" name="firstname" />
+        	<input id="lastname" class="input-text required-entry" type="text" title="Last Name" value="" name="lastname" />-->
+                
+          <p class="sign-tptxt">New user?<span> Register Here</span></p>
+          <span class="fieldinfo fl">Email Address<span class="redcolor">*</span></span>
+          <input id="gcreate-email-address" class="sign-text-field input-text validate-email required-entry" type="text" title="Email Address" value="" name="email" type="email" />
+          <div class="clear"></div>
+          
+          <span class="fieldinfo fl">Password<span class="redcolor">*</span></span>
+          <input id="gcreate-password" class="input-text required-entry validate-password sign-text-field" type="password" title="Password" name="password"/>
+          <!--<input id="confirmation" type="text" name="confirmation"/>-->
+          
+          <!--<input id="confirmation" class="input-text required-entry validate-password" type="password" title="Password" name="confirmation"/>-->
+          <div class="clear"></div>
+          
+          <span class="fieldinfo fl">Mobile No<span class="redcolor">*</span></span>
+          <input id="mobile_number" name="mobile_number" type="text" class="input-text required-entry validate-length maximum-length-10 minimum-length-10 validate-digits validate-mobileno sign-text-field" value="" title="Mobile Number">
+          <div class="clear"></div>
+          
+          <label class="sendemalibox fl">
+            <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed" class="fl mar-r10" checked="checked"/>
+            Send me email updates. </label>
+          <div class="clear"></div>
+          <div class="snlogin-wrap fl"> 
+            <!--<a class="mlogin-btn gtm-track"  href="#"></a> <a class="wlogin-btn gtm-track" href="#"></a> -->
+            <div id="footer-ajax-loader2" class="hidden"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>
+            <button type="submit" title="<?php echo $this->__('Create an Account') ?>" class="button" id="submit-create-account"><span><span><?php echo $this->__('Create an Account') ?></span></span></button>
+          </div>
+        </form>
+      </div>
+      <div class="clear"></div>
+      <?php /*?><div class="sig-fb-wrap">
+        <div class="sign-fbw-strip"></div>
+        <a href="#" class="gplus-signin-btn"></a> <a href="#" class="fb-signin-btn gtm-track"></a> </div><?php /*?>
+    </div>
+  </div>
+  
+  <?php /*?><script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'js/ajaxlogin/jquery.fancybox.js'?>" type="text/javascript"></script><?php */?>
+  <!-- DIV LOGIN_CREATE INFO  -->
+  <?php /*?><div id="info-login-create" style="display:none;min-width:700px;min-height:400px;"> <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <div class="g-login" style="width:300px;float:left">
+      <h2><?php echo $this->__('Registered Customers') ?></h2>
+      <p><?php echo $this->__('If you have an account with us, please log in.') ?></p>
+      <form action="#" method="post" id="g-form-login">
+        <ul class="form-list">
+          <li>
+            <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+            <div class="input-box">
+              <input type="text" name="login[username]" value="" id="gregistered-email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+            </div>
+          </li>
+          <li>
+            <label for="pass" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+            <div class="input-box">
+              <input type="password" name="login[password]" class="input-text required-entry validate-password" id="gregistered-password" title="<?php echo $this->__('Password') ?>" />
+            </div>
+          </li>
+          <?php //echo $this->getChildHtml('form.additional.info'); ?>
+          <?php //echo $this->getChildHtml('persistent.remember.me'); ?>
+        </ul>
+        <?php //echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <div class="buttons-set btn-new">
+          <div style="display:inline-block;width:170px;float:left">
+            <label><?php echo $this->__('Forgot Your Password') ?></label>
+            <input style="margin-left:10px" type="checkbox"  id="gcheck-forgotpass"/>
+          </div>
+          <div id="footer-ajax-loader1"></div>
+          <button type="submit" class="button" title="<?php echo $this->__('Login') ?>" name="submit-login" id="submit-login"><span><span><?php echo $this->__('Login') ?></span></span></button>
+        </div>
+      </form><?php */?>
+      <!--<form action="<?php //echo $this->getUrl('*/*/forgotpasswordpost') ?>" method="post" id="gform-forgot-password" style="display:none">-->
+        <?php /*?><div class="fieldset" style="padding-left:16px;margin-top:15px;">
+          <h2 class="legend"><?php echo $this->__('Retrieve your password here') ?></h2>
+          <p><?php echo $this->__('Please enter your email address below. You will receive a link to reset your password.') ?></p>
+          <ul class="form-list">
+            <li>
+              <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+              <div class="input-box">
+                <input type="text" name="email" alt="email" id="gforgot-emai-address" class="input-text required-entry validate-email" value="" />
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="buttons-set btn-new">
+          <div id="footer-ajax-loader3"></div>
+          <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+        </div>
+      </form>
+    </div>
+    <div class="g-create" style="width:350px;float:right">
+      <h2><?php echo $this->__('New Customers') ?></h2>
+      <div class="">
+        <form action="#" id="g-form-register-customer">
+          <ul class="form-list">
+            <li>
+              <label for="first-name" class="required"><em>*</em><?php echo $this->__('First Name') ?></label>
+              <div class="input-box">
+                <input id="firstname" class="input-text required-entry" type="text" title="First Name" value="" name="firstname" />
+              </div>
+            </li>
+            <li>
+              <label for="lastname" class="required"><em>*</em><?php echo $this->__('Last Name') ?></label>
+              <div class="input-box">
+                <input id="lastname" class="input-text required-entry" type="text" title="Last Name" value="" name="lastname" />
+              </div>
+            </li>
+            <li>
+              <label class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+              <div class="input-box">
+                <input id="gcreate-email-address" class="input-text validate-email required-entry" type="text" title="Email Address" value="" name="email" />
+              </div>
+            </li>
+            <li>
+              <label  class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+              <div class="input-box">
+                <input id="gcreate-password" class="input-text required-entry validate-password" type="password" title="Password" name="password"/>
+              </div>
+            </li>
+            <li>
+              <label class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+              <div class="input-box">
+                <input id="confirmation" class="input-text required-entry validate-password" type="password" title="Password" name="confirmation"/>
+              </div>
+            </li>
+            <li>
+              <label><?php echo $this->__('Sign Up for Newsletter') ?></label>
+              <span>
+              <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed" />
+              </span> </li>
+          </ul>
+          <div class="buttons-set btn-new">
+            <div id="footer-ajax-loader2"></div>
+            <button type="submit" title="<?php echo $this->__('Create an Account') ?>" class="button" id="submit-create-account"><span><span><?php echo $this->__('Create an Account') ?></span></span></button>
+          </div>
+        </form>
+      </div>
+    </div><?php */?>
+    <script type="text/javascript">
+        //<![CDATA[
+            //var dataForm = new VarienForm('g-form-login', true);
+            //var dataForm = new VarienForm('g-form-register-customer', true);
+            var dataForm = new VarienForm('gform-forgot-password', true);
+            
+        //]]>
+	</script> 
+  <?php /*?></div><?php */?>
+  <!-- END DIV LOGIN_CREATE INFO  --> 
+  
+</div>
+<div id="lightboxBlackOverlay"></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery("a#showLB").click(function(){
+		jQuery("#lightboxBlackOverlay, #lightboxContent").fadeIn(300);
+	})
+	jQuery("a#closeLB, #lightboxBlackOverlay").click(function(){		//	Close popup on click of anywhere outside or close button
+		jQuery("#lightboxBlackOverlay, #lightboxContent").fadeOut(300);
+	})
+});
+jQuery(document).ready(function(){
+	
+	//jQuery('.fancybox').fancybox();
+	jQuery('#gregistered-email').val('');
+	jQuery('#gcreate-password').val('');
+	jQuery('#gcreate-email-address').val('');
+	jQuery('#gregistered-password').val('');
+	jQuery("#gcheck-forgotpass").change(function()
+	{
+		if(this.checked){
+			jQuery("#gform-forgot-password").show();
+		}else{
+			jQuery("#gform-forgot-password").hide();
+		}
+	});
+
+	/* Login ajax */
+	var loginForm = new VarienForm('g-form-login', true);
+	jQuery('#g-form-login').submit(function(event) {
+		event.preventDefault();
+		//alert(loginForm.validator.validate());
+		if(loginForm.validator.validate() === true) {
+			var data = jQuery('#g-form-login').serialize();
+			jQuery("#login_popup_response_error").hide();
+			jQuery('#footer-ajax-loader1').removeClass('hidden');
+			jQuery('#submit-login').attr('disabled','disabled');
+			jQuery.ajax({
+				url: "<?php echo $this->getUrl('ajaxlogin/account/guruthemeLogin') ?>",
+				type : 'post',
+				data: data,
+				success: function(data){
+					//alert(JSON.stringify(data));
+					//alert(data);
+					var parsedJson = jQuery.parseJSON(data);                      
+					//alert(parsedJson.message);
+					if(parsedJson.message){
+					  //new Messi(parsedJson.message);
+						jQuery("#login_popup_response_error").show();
+					  	jQuery('#footer-ajax-loader1').addClass('hidden');
+						jQuery('#submit-login').attr("disabled", false); 
+					  	jQuery('#login_popup_response_error').html(parsedJson.message).addClass('error-msg');
+					}
+					if(parsedJson.success){
+						//new Messi('Login successfully');
+						//alert(parsedJson.success);
+						window.location = parsedJson.url;
+					}
+				}
+			});
+		}else{
+			jQuery("#login_popup_response_error").hide();
+			return false;
+		}
+	});
+	
+	/* Create account ajax */
+	var createAccountForm = new VarienForm('g-form-register-customer', true);
+	
+	/*jQuery(function(){
+		jQuery('#gcreate-password').focusout(function(){
+			jQuery('#confirmation').val(jQuery('#gcreate-password').val());
+		})
+	});*/
+	
+	jQuery('#g-form-register-customer ').submit(function(event){
+		event.preventDefault();
+		if(createAccountForm.validator.validate() === true){
+			var data = jQuery('#g-form-register-customer').serialize();
+			jQuery("#login_popup_response_error").hide();
+			jQuery('#footer-ajax-loader2').removeClass('hidden');
+			jQuery('#submit-create-account').attr('disabled','disabled');
+			
+			//jQuery('#confirmation').val(jQuery('#gcreate-password').val());
+			jQuery.ajax({
+				  url: "<?php echo $this->getUrl('ajaxlogin/account/createPost') ?>",
+				  type : 'post',
+				  data: data,
+				  success: function(data){
+					  //alert(JSON.stringify(data));
+					  var parsedJson = jQuery.parseJSON(data);                      
+					  //alert(parsedJson.message);
+					  if(parsedJson.message){
+						jQuery("#login_popup_response_error").show();
+					  	jQuery('#footer-ajax-loader2').addClass('hidden');
+						jQuery('#submit-create-account').attr("disabled", false); 
+					  	jQuery('#login_popup_response_error').html(parsedJson.message).addClass('error-msg');
+					  }
+					  if(parsedJson.success){
+						  jQuery('#login_popup_response_error').html(parsedJson.message).addClass('success-msg');
+						 window.location = parsedJson.url;
+					 }
+				  }
+			});
+		}else{
+			jQuery("#login_popup_response_error").hide();
+			return false;			
+		}
+	});
+			
+        <?php /*?>jQuery('#g-form-login').submit(function(event){
+            event.preventDefault();
+            if(!jQuery('#g-form-login div input').hasClass('validation-advice')){
+                var data = jQuery('#g-form-login').serialize();
+                <?php /*?>jQuery('#footer-ajax-loader1').css('background', 'url(<?php echo $this->getSkinUrl('ajaxlogin/images/opc-ajax-loading-black.gif') ?>) no-repeat top right')<?php ?>
+				jQuery('#footer-ajax-loader1').show();
+                jQuery.ajax({
+                      url: "<?php echo $this->getUrl('ajaxlogin/account/guruthemeLogin') ?>",
+                      type : 'post',
+                      data: data,
+                      success: function(data){
+                          
+                    	  //alert(JSON.stringify(data));
+                    	  //alert(data);
+                    	  var parsedJson = jQuery.parseJSON(data);                      
+                          //alert(parsedJson.message);
+                          if(parsedJson.message){
+                        	  //new Messi(parsedJson.message);
+                          }
+                          if(parsedJson.success){
+                        	 //new Messi('Login successfully');
+                        	 //alert(parsedJson.success);
+                        	 window.location = parsedJson.url;
+                         }
+                          jQuery('#footer-ajax-loader1').css('background', 'none');
+                            //jQuery('#newsletter').val('');
+                      }
+                });
+            }
+        });<?php */?>
+
+		
+
+
+        /* Forgot Password */
+        jQuery('#gform-forgot-password').submit(function(event){
+            event.preventDefault();
+            if(!jQuery('#gform-forgot-password div input').hasClass('validation-failed')){
+                var data = jQuery('#gform-forgot-password').serialize();
+                jQuery('#footer-ajax-loader3').css('background', 'url(<?php echo $this->getSkinUrl('ajaxlogin/images/opc-ajax-loading-black.gif') ?>) no-repeat top right')
+                //alert(data);
+                jQuery.ajax({
+                      url: "<?php echo $this->getUrl('ajaxlogin/account/guruthemeForgotPass') ?>",
+                      type : 'post',
+                      data: data,
+                      success: function(data){
+                    	  var parsedJson = jQuery.parseJSON(data);                      
+                          if(parsedJson.message){
+                        	  new Messi(parsedJson.message);
+                          }
+                          /*if(parsedJson.success){
+                        	 window.location = parsedJson.url;
+                        	 
+                         }*/
+                         jQuery('#footer-ajax-loader3').css('background', 'none');
+                            //jQuery('#newsletter').val('');
+                      }
+                });
+            }
+        });
+        
+});
+</script>

@@ -1,0 +1,45 @@
+<?php
+/**
+ * Magpleasure Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE-CE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magpleasure.com/LICENSE-CE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * Magpleasure does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Magpleasure does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   Magpleasure
+ * @package    Magpleasure_Shareme
+ * @version    1.0.2
+ * @copyright  Copyright (c) 2011-2012 Magpleasure Ltd. (http://www.magpleasure.com)
+ * @license    http://www.magpleasure.com/LICENSE-CE.txt
+ */
+
+/** @var Magpleasure_Shareme_Block_Action $this */
+?>
+<?php if ($this->canUse()): ?>
+<div class="action">
+    <?php echo $this->__("Press &quot;Like&quot; for <a href='#' onclick='showDialog(); return false;'>our Facebook page</a> and get %s for any product" ,$this->__("<span class='off'>%s off</span> Coupon", $this->getDiscount())); ?>
+</div>
+<script type="text/javascript">
+    var showDialog = function(){
+        showOurPage({
+            url: '<?php echo $this->getAjaxUrl(); ?>',
+            width: <?php echo $this->getFacebookConfig('width'); ?>,
+            height: <?php echo $this->getFacebookConfig('height') + 5; ?>,
+            label: '<?php echo $this->__("Ready"); ?>'
+        });
+    };
+</script>
+<?php endif; ?>

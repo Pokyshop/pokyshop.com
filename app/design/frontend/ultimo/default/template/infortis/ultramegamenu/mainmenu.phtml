@@ -1,0 +1,103 @@
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Catalog_Block_Navigation
+ */
+?>
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * bool Add opener if menu is used as accordion
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+<?php
+	$helper = Mage::helper('ultramegamenu');
+	if ($helper->getCfg('mainmenu/enable')):
+?>
+
+<?php
+	$menuCss = array();
+	if ($helper->getCfg('mainmenu/classic_menu'))
+	{
+		$menuCss[] = 'classic';
+	}
+	if ($helper->getCfg('mainmenu/wide_menu'))
+	{
+		$menuCss[] = 'wide';
+	}
+?>
+    
+<div id="mobnav" class="grid-full">
+    <a id="mobnav-trigger" href="">
+    	<div class="icon"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    	<span><?php echo $this->__('Menu'); ?></span>
+    </a>
+</div>
+
+<?php //Mobile main menu ?>
+<ul class="accordion vertnav vertnav-top grid-full">
+	<?php echo $this->renderCategoriesMenuHtml(TRUE, 0, 'level-top'); ?>
+</ul>
+
+<?php //Standard main menu ?>
+<ul id="nav" class="grid-full<?php if($menuCss) echo " " . implode(" ", $menuCss); ?>">
+
+	<?php //Home link ?>
+    <?php if ($helper->getCfg('mainmenu/home')): ?>
+        <li id="nav-home-link" class="level0 level-top">
+        	<?php if ($helper->getCfg('mainmenu/home_img')): ?>
+        		<a class="home-img level-top" href="<?php echo $this->getBaseUrl(); ?>"><?php echo $this->__('Home'); ?></a>
+        	<?php else: ?>
+        		<a class="level-top" href="<?php echo $this->getBaseUrl(); ?>"><span><?php echo $this->__('Home'); ?></span></a>
+        	<?php endif; ?>
+        </li>
+    <?php endif; ?>
+
+	<?php //Main menu categories ?>
+    <?php echo $this->renderCategoriesMenuHtml(FALSE, 0, 'level-top'); ?>
+
+    <?php //Static block as a drop-down box ?>
+    <?php if ($tmpHtml = $this->getChildHtml('block_header_nav_dropdown')): ?>
+        <li class="nav-custom-link level0 level-top parent<?php if ($helper->getCfg('mainmenu/custom_block_floating')) echo ' right'; ?>">
+            <?php // Get the block title, and display it as tab title
+                $blockTitle = Mage::getModel('cms/block')
+                    ->setStoreId(Mage::app()->getStore()->getId())
+                    ->load('block_header_nav_dropdown')
+                    ->getTitle();
+            ?>
+            <a class="level-top" href="#"><span><?php echo $blockTitle; ?></span></a>
+			<div class="level0-wrapper">
+					<div class="header-nav-dropdown-wrapper clearer"><?php echo $tmpHtml; ?></div>
+            </div>
+        </li>
+    <?php endif; ?>
+    	<li id="nav-postproduct-link" class="level0 level-top"><a href="<?php echo $this->getUrl('make-in-india') ?>">Make in India</a></li>
+    	<?php /*?><li id="nav-postproduct-link" class="level0 level-top">
+            <a class="home-img level-top" href="<?php echo $this->getUrl('postproduct'); ?>"><?php echo $this->__('Post Product'); ?></a>
+        </li><?php */?>
+    
+    <?php //... ?>
+    <?php //echo $this->getChildHtml('ummBrands'); ?>
+    
+    <?php //... ?>
+    <?php //echo $this->getChildHtml('block_header_nav_links'); ?>
+    
+</ul>
+
+<?php if ($helper->getCfg('mainmenu/wide_menu')): ?>
+	<script type="text/javascript">
+		jQuery(function($) {
+			$("#nav > li").hover(function() {
+				$(this).find(".level0-wrapper").stop(true, true).delay(150).fadeIn(300, "easeOutCubic");
+			}, function() {
+				$(this).find(".level0-wrapper").stop(true, true).delay(150).fadeOut(300, "easeInCubic");
+			});
+		});
+	</script>
+<?php endif; ?>
+
+<?php endif; ?>

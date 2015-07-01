@@ -1,0 +1,75 @@
+<?php
+/**
+ * Magpleasure Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE-CE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magpleasure.com/LICENSE-CE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * Magpleasure does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Magpleasure does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   Magpleasure
+ * @package    Magpleasure_Shareme
+ * @version    1.0.2
+ * @copyright  Copyright (c) 2011-2012 Magpleasure Ltd. (http://www.magpleasure.com)
+ * @license    http://www.magpleasure.com/LICENSE-CE.txt
+ */
+
+/** @var Magpleasure_Shareme_Block_Request $this */
+?>
+<div>
+    <h2 class="request-header"><?php echo $this->__('I have Shared! Give me the Coupon'); ?></h2>
+    <fieldset>
+        <input class="request-input" type="hidden" name="<?php echo $this->getFieldId(); ?>product_id" value="<?php echo $this->getProduct()->getId(); ?>"  />
+        <input class="request-input" type= "hidden" name="<?php echo $this->getFieldId(); ?>customer_id" value="<?php echo $this->getCustomerSession()->getCustomerId(); ?>"  />
+        <label class="wall"><?php echo $this->getWallLabel(); ?></label>
+        <br />
+        <input type="text" class="request-input required-entity input-text wall" name="<?php echo $this->getFieldId(); ?>wall" id="<?php echo $this->getFieldId(); ?>wall" value="<?php echo $this->getWallUrl(); ?>" />
+        <br />
+        <script type="text/javascript">
+            var flag = false;
+            $('<?php echo $this->getFieldId(); ?>wall').observe('click', (function(e){
+                if (!flag){
+                    document.getElementById('<?php echo $this->getFieldId(); ?>wall').select();
+                }
+                flag = true;
+            }).bind(flag));
+
+        </script>
+        <span class="hint"><?php echo $this->__("Input your wall URL here. Moderator will validate it."); ?></span>
+        <br />
+        <?php foreach ($this->_helper()->getActions() as $area): ?>
+            <?php echo $this->getElementHtml($area, 'checkbox'); ?>
+        <?php endforeach; ?>
+    </fieldset>
+    <div class="buttons">
+        <div class="button">
+            <button onclick="sendRequest({
+                    button: this,
+                    url: '<?php echo $this->getRequestUrl(); ?>',
+                    inputSelector: '.shareme input.request-input',
+                    secure: '<?php echo $this->getSecure(); ?>',
+                    default_wall: '<?php echo $this->getWallUrl(); ?>',
+                    wall_input: $('<?php echo $this->getFieldId(); ?>wall'),
+                    errorMsg: '<?php echo $this->__('Please insert a valid url of your wall.'); ?>'
+                });"
+                    class="button"
+                    title="<?php echo $this->__('Request Coupon'); ?>"
+                    type="button">
+                <span><?php echo $this->__('Request Coupon'); ?></span>
+            </button>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

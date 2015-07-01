@@ -1,0 +1,119 @@
+# Enables robots.txt rules for all crawlers
+User-agent: *
+
+Disallow: /404*
+Disallow: /app/
+Disallow: /dynamic*
+Disallow: /downloader*
+Disallow: /errors*
+Disallow: /includes/
+Disallow: /lib/
+Disallow: /pkginfo/
+Disallow: /report/
+Disallow: /scripts/
+Disallow: /shell/
+#Disallow: /skin/
+Disallow: /stats/
+Disallow: /var/
+Disallow: /catalogsearch*
+Disallow: /checkout/
+Disallow: /contacts/
+Disallow: /customize/
+Disallow: /newsletter/
+Disallow: /poll/
+Disallow: /review/
+Disallow: /sendfriend/
+Disallow: /tag/
+Disallow: /wishlist/
+
+
+# Paths (clean URLs)
+Disallow: /index.php/
+Disallow: /catalog/product_compare/
+Disallow: /catalog/category/view/
+Disallow: /catalog/product/view/
+Disallow: /control/
+Disallow: /contacts/
+Disallow: /customize/
+Disallow: /newsletter/
+Disallow: /catalog/product/gallery/
+
+
+# # Do not index the shared files
+Disallow: /api.php
+Disallow: /cron.php*
+Disallow: /cron.sh
+Disallow: /error_log
+Disallow: /get.php
+Disallow: /install.php
+Disallow: /LICENSE.html
+Disallow: /LICENSE.txt
+Disallow: /LICENSE_AFL.txt
+Disallow: /README.txt
+Disallow: /RELEASE_NOTES.txt
+
+
+Disallow: /*.css$
+Disallow: /*.php$
+
+# Do not index the link from the session ID
+Disallow: /*?SID=
+
+# Do not index the page checkout and user account
+Disallow: /checkout/
+Disallow: /onestepcheckout/
+Disallow: /account/
+Disallow: /login/
+
+Sitemap: http://www.pokyshop.com/sitemap/sitemap.xml
+
+User-Agent: AhrefsBot
+Disallow: /catalogsearch*
+
+User-agent: aranhabot
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: web-ceo-online-bot
+Disallow: /
+
+User-agent: Akamai
+Disallow: /
+
+User-agent: spotbot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: Baiduspider-image
+Disallow: /
+
+User-agent: Baiduspider-video
+Disallow: /
+
+User-agent: Baiduspider-news
+Disallow: /
+
+User-agent: Baiduspider-favo
+Disallow: /
+
+User-agent: Baiduspider-cpro
+Disallow: /
+
+User-agent: Baiduspider-ads
+Disallow: /
+
+User-agent: Baidu
+Disallow: /
+
+User-Agent: Halebot
+Disallow: /*
+
+User-Agent: Pingdom.com_bot
+Disallow: /*
+
+User-Agent: VoilaBot
+Disallow: /*

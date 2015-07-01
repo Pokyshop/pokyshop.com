@@ -1,0 +1,251 @@
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title">
+  <h1>Sell with us Post a Free Product</h1>
+</div>
+
+<script>
+jQuery( '#addProductsForm' ).each(function(){
+    this.reset();
+});
+</script>
+
+<form action="<?php echo $this->getUrl('postproduct/') ?>index/addproduct<?php //echo $this->getFormAction(); ?>" id="addProductsForm" method="post" class="scaffold-form" enctype="multipart/form-data">
+  <div class="fieldset">
+    <p class="required">* Required Fields</p>
+    <ul class="form-list">
+    	<li class="fields">
+        	<div class="field">
+          		<label for="name" class="required"><em>*</em>Title</label>
+          		<div class="input-box">
+            		<input name="title" id="title" title="" value="" class="input-text required-entry" type="text" placeholder="Product Title" />
+          		</div>
+        	</div>
+	    </li>
+        
+        <li class="fields">
+        	<div class="field">
+          		<label for="short_description" class="required"><em>*</em>Short Description</label>
+          		<div class="input-box">
+                	<textarea name="short_description" id="short_description" class="required-entry input-text" cols="5" rows="3" placeholder="Product Short Description"></textarea>
+                </div>
+        	</div>
+	    </li>
+        
+        <?php /*?><li class="fields">
+        	<div class="field">
+          		<label for="description" class="required"><em>*</em>Description</label>
+          		<div class="input-box">
+                	<textarea name="description" id="description" class="required-entry input-text" cols="5" rows="3" placeholder="Description more about your Product"></textarea>
+                </div>
+        	</div>
+	    </li><?php */?>
+        
+        <li class="fields">
+        	<div class="field">
+          		<label for="product_condition" class="required"><em>*</em>Condition</label>
+          		<div class="input-box">
+                	<input name="product_condition" type="radio" value="New" class="required_entry validate-one-required-by-name" /> New
+                  	<input name="product_condition" type="radio" value="Used" class="required_entry validate-one-required-by-name"/> Used
+                </div>
+        	</div>
+	    </li>
+        
+        <li class="fields">
+        	<div class="field">
+          		<label for="category" class="required"><em>*</em>Category</label>
+          		<div class="input-box">
+                	<select name="category" class="required-entry validate-select">
+                    	<option value="">--Select Category--</option>
+                        <?php
+							$categoryHelper = Mage::helper("sarah")->getCategoriesDropdown();
+							foreach($categoryHelper as $value){
+								foreach($value as $key => $val){
+									if($key=='label'){
+										$categoryName = $val;
+									}
+									if($key=='value'){
+										$categoryId = $val;
+									}
+									if($key=='level'){
+										$categoryLevel 	= 	$val;
+										$space 			=	'';
+										for($i=1; $i<$categoryLevel; $i++){
+											$space = $space."-";
+										}
+										$categoryName = $space.$categoryName;
+									 }
+								}
+							  ?>
+                              <option value="<?php echo $categoryId; ?>"><?php echo $categoryName ?></option>
+						 <?php } ?>
+                    </select>
+                </div>
+        	</div>
+	    </li>
+        
+        <li class="fields">
+        	<div class="field">
+          		<label for="price" class="required"><em>*</em>Price</label>
+          		<div class="input-box">
+            		<input class="input-text required-entry validate-number validate-greater-than-zero" name="price" id="price" title="" value="" type="text"  placeholder="101" />
+          		</div>
+        	</div>
+	    </li>
+        
+        <li class="fields">
+        	<div class="field">
+          		<label for="product_image" class="required"><em>*</em>Product Image</label>
+          		<div class="input-box">
+                	<input name="product_image[]" type="file" class="input-text required-entry" title="Main Image" />
+                    <input name="product_image[]" type="file" title="Small Image"/>
+                    <?php /*?><input name="product_image[]" type="file" title="Thumbnail Image" /><?php */?>
+          		</div>
+        	</div>
+	    </li>
+        
+		<li class="fields">
+            <div class="field">
+              <label for="name" class="required"><em>*</em>Name</label>
+              <div class="input-box">
+                <input name="name" id="name" title="" value="<?php echo $this->htmlEscape($this->helper('sarah')->getUserName());?>" class="input-text required-entry" type="text" placeholder="Your Full Name" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="email" class="required"><em>*</em>Email</label>
+              <div class="input-box">
+                <input name="email" id="email" title="" value="<?php echo $this->htmlEscape($this->helper('sarah')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false"  placeholder="Email Address" />
+              </div>
+            </div>
+		</li>
+          
+		<li class="fields">
+            <label for="telephone" class="required"><em>*</em>Phone</label>
+            <div class="input-box">
+              <input name="telephone" id="telephone" title="" value="" class="input-text required-entry" type="tel"  placeholder="9982631905" />
+            </div>
+		</li>
+        
+        <li class="fields">
+            <label for="address" class="required"><em>*</em>Address</label>
+            <div class="input-box">
+              <input name="address" id="address" title="" value="" class="input-text required-entry"  placeholder="Your Complete Address"/>
+            </div>
+		</li>
+        
+        <?php /*?><li class="fields">
+        	<input id="terms_condition" name="terms_condition" type="checkbox"/>
+          	<p class="left" style="width:90%;font-size:12px;padding-left:10px;">I agree to Jaipuronly.com privacy policy.</p>
+            <label for="address">Address</label>
+            <div class="input-box">
+              <input name="address" id="address" title="" value="" class="input-text required-entry"  placeholder="Your Complete Address"/>
+            </div>
+		</li><?php */?>
+        
+        <li class="fields">
+        	<div class="field">
+          		<label for="state" class="required"><em>*</em>State</label>
+                <div class="input-box">
+					<?php	$stateCollection = Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray(); ?>
+                    <?php if (count($stateCollection) > 0){ ?>
+                        <select name="state" id="state" class="required-entry validate-select">
+                            <?php foreach($stateCollection as $state): ?>
+                                <option value="<?php echo $state['label']//$state['value'] ?>"><?php echo $state['label'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    <?php }else{ ?>
+                    	<input name="state" id="state" title="" value="" class="input-text required-entry"  placeholder="State"/>
+					<?php } ?>
+          		</div>
+        	</div>
+	    </li>
+        
+        <li class="fields">
+        	<div class="field">
+          		<label for="city" class="required"><em>*</em>City</label>
+          		<div class="input-box">
+            		<input name="city" id="city" title="" value="" class="input-text required-entry"  placeholder="City"/>
+          		</div>
+        	</div>
+	    </li>
+        
+        <li class="fields">By clicking 'Submit' you accept our <a href="<?php echo Mage::getUrl('terms')?>" target="_blank">Terms of Use</a> & <a href="<?php echo Mage::getUrl('posting')?>" target="_blank">Posting Rules</a></li>
+        
+        
+    </ul>
+  </div>
+  <div class="buttons-set">
+    <button id="add_products_form_submit" type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+  </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var addProductsForm = new VarienForm('addProductsForm', true);
+//]]>
+
+//	Form Validation
+//	Perform action on click of submit button
+jQuery("#add_products_form_submit").click(function(e) {
+	var uploadedFiles = [];			//	push values to array
+	//	Loop to check if user tries to submit form without uploading any file
+	jQuery('#addProductsForm input[type="file"]').each(function(index) {
+		//alert(index);
+		var $this = jQuery(this);
+		//alert($this.val());
+		//alert(jQuery('#addProductsForm input.file')[0].files[0].size);
+		
+		//alert($this.size());
+		if ($this.val() != '') { 
+			uploadedFiles.push($this.val());
+		} 
+	});
+	//alert(uploadedFiles);
+	if (uploadedFiles == "") {
+        alert('Please upload atleast one Product Image.');
+		return false;
+	}else{
+		//	Check if user tries to upload the same file twice or tries to upload the duplicate file
+		var uploadedFilesArray = uploadedFiles.sort(); 		//	sort an array
+		var uploadedFilesDuplicate = [];					//	create another array to store duplicate values
+		for (var i = 0; i < uploadedFilesArray.length - 1; i++) {
+			if (uploadedFilesArray[i + 1] == uploadedFilesArray[i]) {
+				uploadedFilesDuplicate.push(uploadedFilesArray[i]);
+			}
+		}
+		//alert(uploadedFilesDuplicate);
+		if(uploadedFilesDuplicate.length > 0){
+			alert('Please don\'t upload same Product Image more than once.');
+			e.preventDefault();
+			return false;
+		}
+
+		//	Loop to check if user uploaded the file as per the requirement (allowed file size and extension)
+		jQuery('#addProductsForm input[type="file"]').each(function(index) {
+			//alert(index);
+			var displayIndex	=	index+1;
+			//alert(displayIndex);
+			if(jQuery('#addProductsForm input[type="file"]')[index].files[0]){
+				//alert(jQuery('#addProductsForm input[type="file"]')[index].files[0].name);
+				var fname = jQuery('#addProductsForm input[type="file"]')[index].files[0].name;
+				var fsize = jQuery('#addProductsForm input[type="file"]')[index].files[0].size;
+				var ftype = jQuery('#addProductsForm input[type="file"]')[index].files[0].type;
+				//alert(fname);		alert(fsize);		
+				//alert(ftype);
+				var fileExtension = fname.split('.')[fname.split('.').length - 1].toLowerCase();
+				//alert(fileExtension);
+				
+				if(fileExtension != 'png' && fileExtension != 'jpg' && fileExtension != 'gif' && fileExtension != 'jpeg' ) {
+					alert(""+ fname +" is not a valid Product Image as it doesnt match gif, jpg, png.");
+					e.preventDefault();
+					return false;
+				}else if(fsize > 2097152) {
+					alert(""+ fname +" is too large. Please upload Product Image less than 2MB in size.");
+					e.preventDefault();
+					return false;
+				}else{
+					//jQuery('form').submit(); 		
+				}
+			}
+		});
+	}
+});	
+</script>
