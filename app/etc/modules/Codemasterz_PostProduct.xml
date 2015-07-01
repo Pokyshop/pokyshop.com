@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Codemasterz_PostProduct>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Codemasterz_PostProduct>
+    </modules>    
+</config>

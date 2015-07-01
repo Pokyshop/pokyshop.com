@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Codemasterz_PostProduct>
+            <version>0.1.0</version>
+        </Codemasterz_PostProduct>
+    </modules> 
+	
+	<global>
+        <!--<blocks>
+            <tracking>
+                <class>Customy_Tracking_Block</class>
+            </tracking>
+        </blocks>-->
+        <helpers>
+            <postproduct>
+                <class>Codemasterz_PostProduct_Helper</class>
+            </postproduct>
+        </helpers>
+        <!--<models>
+            <tracking>
+                <class>Customy_Tracking_Model</class>
+            </tracking>
+        </models>-->
+		<template>
+			<email>
+				<postproduct_email_template translate="label" module="postproduct">
+					<label>PostProduct Email</label>
+					<file>codemasterz/postproduct.html</file>
+					<type>html</type>
+				</postproduct_email_template>
+			</email>
+		</template>
+    </global>
+  
+    <frontend>
+        <routers>
+            <postproduct>
+                <use>standard</use>
+                <args>
+                    <module>Codemasterz_PostProduct</module>
+                    <frontName>postproduct</frontName>			<!--name of the module that will show in frontend url-->
+                </args>
+            </postproduct>
+        </routers>
+    </frontend>    
+</config>

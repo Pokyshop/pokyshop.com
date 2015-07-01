@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Codemasterz
+ * @package    Codemasterz_Sarah
+ * @author     vaseemansari007@gmail.com
+ * @website    http://www.vaseemansari.com 
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <tabs>
+        <codemasterzall translate="label" module="sarah">		<!--any random name that will represent other functionality of codemasterz module-->
+            <label>CodeMasterz Extensions</label>
+            <sort_order>150</sort_order>
+        </codemasterzall>
+    </tabs>
+	<sections>
+        <codemasterzinfo translate="label" module="sarah">		<!--name of the tab in system ->config-->
+			<label>Info</label>
+			<tab>codemasterzall</tab>							<!--random name defined above-->
+			<frontend_type>text</frontend_type>
+			<sort_order>99999999999</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+                <info>
+                    <frontend_model>sarah/system_config_info</frontend_model>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </info>
+			</groups>
+		</codemasterzinfo>
+        
+        <sarah module="sarah">									<!--modulename-->
+            <label>Additional Functionality</label>
+            <tab>codemasterzall</tab>							<!--random name defined above-->
+            <frontend_type>text</frontend_type>
+            <sort_order>1200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			
+			<!--S:VA	New Group-->
+            <groups>
+                <option translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <code translate="label">
+                            <label>Access Code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[If access code is used then you need to add query string as:<br />http://magento-url/any-page<strong>?tp=1&code=code-entered-above</strong> in order to turn on the template path hints. Else you can simply use <strong>?tp=1</strong>.<br /> Note that this technique works well both for frontend and admin part.]]></comment>
+                        </code>
+                    </fields>
+                </option>
+            </groups>
+			<!--E:VA	New Group-->
+			
+			<!--S:VA	New Group-->
+			<groups>
+                <cache_settings translate="label comment">
+                    <label>Cache Settings</label>
+                    <sort_order>63</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<css_cache_version translate="label comment">
+                            <label>Css Version</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>41</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </css_cache_version>
+						<js_cache_version translate="label comment">
+                            <label>Js Version</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>42</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </js_cache_version>
+                    </fields>
+                </cache_settings>
+            </groups>
+			<!--E:VA	New Group-->
+        </sarah>
+    </sections>
+    
+</config>

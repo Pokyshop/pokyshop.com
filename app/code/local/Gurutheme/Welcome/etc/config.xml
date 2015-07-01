@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config>    
+	<modules>
+        <Gurutheme_Welcome>
+            <version>0.1.0</version>
+        </Gurutheme_Welcome>
+    </modules>
+
+	<global>
+		<helpers>
+			<welcome>
+				<class>Gurutheme_Welcome_Helper</class>
+			</welcome>
+		</helpers>
+        <models>
+            <!-- ... -->
+            <welcome>
+                <class>Gurutheme_Welcome_Model</class>
+            </welcome>   
+            <!-- ... -->
+        </models>
+        <blocks>
+            <welcome>
+                <class>Gurutheme_Welcome_Block</class>
+            </welcome>  
+        </blocks>		
+	</global>
+	
+    <!--<frontend>
+        <routers>
+            <welcome>
+                <use>standard</use>
+                <args>
+                    <module>Gurutheme_Welcome</module>
+                    <frontName>welcome</frontName>
+                </args>
+            </welcome>
+        </routers>  
+        <layout>
+            <updates>
+                <welcome>
+                    <file>welcomebar.xml</file>
+                </welcome>
+            </updates>
+        </layout>
+    </frontend>-->
+
+    <adminhtml>
+	
+		<layout>
+            <updates>
+                <gurustore module="welcome">
+                    <file>gurustore.xml</file>
+                </gurustore>
+            </updates>
+        </layout>
+	
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>                 
+										<gurustore></gurustore>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    
+</config>

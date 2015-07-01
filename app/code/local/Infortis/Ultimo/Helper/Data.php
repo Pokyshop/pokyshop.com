@@ -1,0 +1,270 @@
+<?php
+
+class Infortis_Ultimo_Helper_Data extends Mage_Core_Helper_Abstract
+{
+	/**
+	 * Patterns directory URL
+	 *
+	 * @var array
+	 */
+	protected $_patternsUrl;
+	
+	/**
+	 * Background images directory URL
+	 *
+	 * @var array
+	 */
+	protected $_bgImagesUrl;
+	
+	/**
+	 * Path to the directory with automatically generated CSS
+	 *
+	 * @var string
+	 */
+	protected $_generatedCssPath;
+	
+	/**
+	 * Create paths
+	 */
+	public function __construct()
+	{
+	$this->_patternsUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'wysiwyg/infortis/ultimo/_patterns/default/';
+	$this->_bgImagesUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'wysiwyg/infortis/ultimo/_backgrounds/';
+	$this->_generatedCssPath = 'skin/frontend/ultimo/default/css/_css/';
+	}
+	
+	/**
+	 * Get selected group from the main section (main settings) of the configuration array
+	 *
+	 * @return array
+	 */
+	public function getCfgGroup($group, $storeId = NULL)
+    {
+		if ($storeId)
+			return Mage::getStoreConfig('ultimo/' . $group, $storeId);
+		else
+			return Mage::getStoreConfig('ultimo/' . $group);
+    }
+	
+	/**
+	 * Get theme's design section from the configuration array
+	 *
+	 * @return array
+	 */
+	public function getDesignCfgSection($storeId = NULL)
+    {
+		if ($storeId)
+			return Mage::getStoreConfig('ultimo_design', $storeId);
+		else
+			return Mage::getStoreConfig('ultimo_design');
+    }
+	
+	/**
+	 * Get theme's layout section from the configuration array
+	 *
+	 * @return array
+	 */
+	public function getLayoutCfgSection($storeId = NULL)
+    {
+		if ($storeId)
+			return Mage::getStoreConfig('ultimo_layout', $storeId);
+		else
+			return Mage::getStoreConfig('ultimo_layout');
+    }
+	
+	/**
+	 * Get theme's main settings (single option)
+	 *
+	 * @return string
+	 */
+	public function getCfg($optionString)
+    {
+        return Mage::getStoreConfig('ultimo/' . $optionString);
+    }
+	
+	/**
+	 * Get theme's design settings (single option)
+	 *
+	 * @return string
+	 */
+	public function getDesignCfg($optionString)
+    {
+        return Mage::getStoreConfig('ultimo_design/' . $optionString);
+    }
+	
+	/**
+	 * Get theme's layout settings (single option)
+	 *
+	 * @return string
+	 */
+	public function getLayoutCfg($optionString, $storeCode = NULL)
+    {
+        return Mage::getStoreConfig('ultimo_layout/' . $optionString, $storeCode);
+    }
+	
+	/**
+	 * Get patterns directory path
+	 *
+	 * @return string
+	 */
+	public function getPatternsUrl()
+    {
+        return $this->_patternsUrl;
+    }
+	
+	/**
+	 * Get background images directory path
+	 *
+	 * @return string
+	 */
+	public function getBgImagesUrl()
+    {
+        return $this->_bgImagesUrl;
+    }
+	
+	/**
+	 * Get automatically generated CSS directory path
+	 *
+	 * @return string
+	 */
+	public function getGeneratedCssPath()
+    {
+        return $this->_generatedCssPath;
+    }
+
+	
+	
+		
+	/**
+	 * Get image URL for given product
+	 *
+	 * @param 								$t				TODO: deprecated, will be removed
+	 * @param Mage_Catalog_Model_Product	$prod			Product
+	 * @param int							$w				Image width
+	 * @param int							$h				Image height
+	 * @param string						$imgVersion		Image version: normal, small or thumbnail
+	 * @param mixed							$f				Specific file
+	 * @return string
+	 */
+	public function getImgUrl($t, $product, $w, $h, $imgVersion='image', $f=NULL)
+	{
+		$imgUrl = '';
+		if ($h <= 0)
+			$imgUrl = Mage::helper('catalog/image')->init($product, $imgVersion, $f)
+				->constrainOnly(true)
+				->keepAspectRatio(true)
+				->keepFrame(false)
+				->resize($w);
+		else $imgUrl = Mage::helper('catalog/image')->init($product, $imgVersion, $f)->resize($w, $h);
+		return $imgUrl;
+	}
+	
+	/**
+	 * Get alternative image (HTML) for given product
+	 *
+	 * @param Mage_Catalog_Model_Product	$prod			Product
+	 * @param int							$w				Image width
+	 * @param int							$h				Image height
+	 * @param string						$imgVersion		Image version: normal, small or thumbnail
+	 * @return string
+	 */
+	public function getAltImgHtml($product, $w, $h, $imgVersion='small_image')
+	{
+		$column = $this->getCfg('category/alt_image_column');
+		$value = $this->getCfg('category/alt_image_column_value');
+		$product->load('media_gallery');
+		if ($gal = $product->getMediaGalleryImages())
+		{
+			if ($altImg = $gal->getItemByColumnValue($column, $value))
+			{
+				return
+				'<img class="alt-img" src="' . $this->getImgUrl('', $product, $w, $h, $imgVersion, $altImg->getFile()) . '" alt="' . $product->getName() . '" />';
+			}
+		}
+		
+		return '';
+	}
+	
+	/**
+	 * Returns true, if color is specified and the value doesn't equal "transparent"
+	 *
+	 * @param string $color color code
+	 * @return bool
+	 */
+	public function isColor($color)
+	{
+		if ($color && $color != 'transparent')
+			return true;
+		else
+			return false;
+	}
+
+	/**
+	 * Get HTML of all child blocks with given ID
+	 *
+	 * @param $block Current block object
+	 * @param string $staticBlockId ID of static blocks
+	 * @param bool $auto Automatically align static blocks vertically
+	 * @return string HTML output
+	 */
+	public function getFormattedBlocks($block, $staticBlockId, $auto = true)
+	{
+		//Get HTML output of 6 static blocks with ID $staticBlockId<X>, where <X> is a number from 1 to 6
+		$colCount = 0; //Number of existing static blocks
+		$colHtml = array(); //Static blocks content
+		$html = ''; //Final HTML output
+		for ($i = 1; $i < 7; $i++)
+		{
+			if ($tmp = $block->getChildHtml($staticBlockId . $i))
+			{
+				$colHtml[] = $tmp;
+				$colCount++;
+			}
+		}
+		
+		if ($colHtml)
+		{
+			$gridClass = '';
+			$gridClassBase = 'grid12-';
+			$gridClassPersistent = 'mobile-grid';
+			
+			//Get grid unit class
+			if ($auto)
+			{
+				//Grid units per static block
+				$n = (int) (12 / $colCount);
+				$gridClass = $gridClassBase . $n;
+			}
+			else
+				$gridClass = $gridClassBase . '2';
+				
+			for ($i = 0; $i < $colCount; $i++)
+			{
+				$classString = $gridClassPersistent .' '. $gridClass . ($i==0?' alpha':'') . ($i==$colCount-1?' omega':'');
+				$html .= '<div class="'. $classString .'">';
+				$html .= '	<div class="section-space std">'. $colHtml[$i] .'</div>';
+				$html .= '</div>';
+			}
+		}
+		return $html;
+	}
+	
+	/**
+	 * Get theme's additional body CSS classes
+	 *
+	 * @return string CSS classes
+	 */
+	function getThemeBodyClasses()
+	{
+		$classes = '';
+		$userAgentStr = strtolower($_SERVER['HTTP_USER_AGENT']);
+		if (!preg_match('/opera|webtv/i', $userAgentStr) && preg_match('/msie\s(\d)/', $userAgentStr, $array))
+		{
+			if ($array[1] >= 6 && $array[1] <= 8)
+			{
+				$classes = 'lte-ie8';
+			}
+		}
+		return $classes;
+	}
+}

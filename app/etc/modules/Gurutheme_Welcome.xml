@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gurutheme_Welcome>
+            <active>true</active>
+            <codePool>local</codePool>
+         </Gurutheme_Welcome>
+    </modules>
+</config>

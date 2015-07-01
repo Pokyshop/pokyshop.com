@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<codemasterzinfo>	<!--name of the tab in system ->config this name is defined in system.xml-->
+										<title>CodeMasterz - All</title>
+									</codemasterzinfo>
+									<sarah>				<!--module name-->
+										<title>Additional Functionality Area</title>
+									</sarah>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

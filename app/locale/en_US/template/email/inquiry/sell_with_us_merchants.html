@@ -1,0 +1,32 @@
+<!--@subject Thanks for your submission! @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
+
+<!--@styles
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="action-content">
+            <p>Dear Merchant,<br /></p>
+            <p>Thank you for submitting your information to Pokyshop. We will get back to you at our earliest. If you have an urgent request you can always send an email to sales@pokyshop.com</p>
+			<p>If you that ability to create we have the ability to sell. So, don’t just sell, pokyshop it! Let’s redefine the way we do business.</p>
+<p>Let’s redefine entrepreneurship!
+#MakeInIndia<br /></p>
+
+<p>Look forward to having your Pokystore on Pokyshop!<br /></p>
+Thanks & Regards
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}
