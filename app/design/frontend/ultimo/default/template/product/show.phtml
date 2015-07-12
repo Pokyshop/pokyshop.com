@@ -37,7 +37,6 @@ foreach($productEdit['category_id'] as $k=>$v){
 **  list products 
 **
 -->
-
 <div class="request_table"> <?php echo $this->getPagerHtml(); ?>
   <div class="box-account box-recent">
     <table border="0" cellpadding="0" cellspacing="0">
@@ -65,7 +64,13 @@ foreach($productEdit['category_id'] as $k=>$v){
                           <td>'.$prc[0].'</td>
                           <td>'.$sts.'</td>';
 		//echo '<td>[<a href="'.Mage::getBaseUrl("link").'product/index/edit?ep='.$rt['entity_id'].'&limit='.$resultRequest[0]['limit'].'&p='.$resultRequest[0]['page'].'">edit</a>][<a href="javascript:void();" onclick="javascript:sureDelete('.$rt['entity_id'].')">delete</a>]</td>';
-		echo '<td><a href="'.Mage::getBaseUrl("link").'product/index/edit?ep='.$rt['entity_id'].'&limit='.$resultRequest[0]['limit'].'&p='.$resultRequest[0]['page'].'">Edit</a></td>';
+		echo '<td>';
+			echo '<a href="'.Mage::getBaseUrl("link").'product/index/edit?ep='.$rt['entity_id'].'&limit='.$resultRequest[0]['limit'].'&p='.$resultRequest[0]['page'].'">Edit</a>';
+			if($rt['status']==1){
+				$_product = Mage::getModel('catalog/product')->load($rt['entity_id']); 
+				echo '| <a href="'.$_product->getProductUrl().'">View</a>';
+			}
+		echo '</td>';
 		echo '</tr>';
         }
       }
@@ -74,7 +79,6 @@ foreach($productEdit['category_id'] as $k=>$v){
     </table>
   </div>
   <?php echo $this->getPagerHtml(); ?>
-  <p>&nbsp;</p>
 </div>
 
 <!-- 
@@ -772,8 +776,24 @@ var media_gallery_contentJsObject = new Product.Gallery('media_gallery_content',
 </script>
 <?php }else{ ?>
 <div class="showcase">
-  <h3>Click here to <a href="<?php echo $this->getUrl('postproduct'); ?>">Add More Product(s)</a></h3>
+  <h3><a href="<?php echo $this->getUrl('postproduct'); ?>">Add More Product(s)</a>
+  |
+<a href="<?php echo $this->getUrl('product/index/export/'); ?>">Export all Products</a>
+  |
+  <a id="c_import_products" href="javascript:;">Import Edited Products</a></h3>
 </div>
+
+<div id="m_import_products" class="hidden">
+	<form name="cmz_frm_import_product" id="cmz_frm_import_product" enctype="multipart/form-data" method="post" action="<?php echo $this->getUrl('product/index/import/'); ?>">
+		<input name="import_product" id="import_product" type="file" />
+        <input name="import_submit" type="submit" value="Submit" />
+    </form>
+</div>
+<script>
+jQuery('a#c_import_products').click(function(event){
+	jQuery('#m_import_products').removeClass('hidden');
+});
+</script>
 <?php } ?>
 
 <style type="text/css">
