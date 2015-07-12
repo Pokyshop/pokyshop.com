@@ -1,6 +1,17 @@
 <?php
 class Codemasterz_PostProduct_IndexController extends Mage_Core_Controller_Front_Action{
     
+	public function preDispatch()
+	{
+		parent::preDispatch();
+		if (!Mage::getSingleton('customer/session')->authenticate($this)) {
+			Mage::getSingleton('customer/session')->addError($this->__('Please login to continue.'));
+			$currentUrl = Mage::helper('core/url')->getCurrentUrl();
+			Mage::getSingleton('customer/session')->setBeforeAuthUrl($currentUrl);
+			$this->setFlag('', self::FLAG_NO_DISPATCH, true);
+		}
+	}
+	
 	protected function _getSession()
     {		
         return Mage::getSingleton('customer/session');
@@ -9,11 +20,11 @@ class Codemasterz_PostProduct_IndexController extends Mage_Core_Controller_Front
 	public function indexAction()
     {
 		$session 	= 	$this->_getSession();
-    	if(!$session->isLoggedIn()){
+    	/*if(!$session->isLoggedIn()){
 			$message = $this->__('You need to login first before you add a new product. So please login or create an account.');
 			Mage::getSingleton('core/session')->addError($message);
     		$this->_redirectUrl(Mage::helper('customer')->getLoginUrl());
-    	}else{
+    	}else{*/
 			//Get current layout state
 			$this->loadLayout();   
 	 
@@ -31,7 +42,7 @@ class Codemasterz_PostProduct_IndexController extends Mage_Core_Controller_Front
 			$this->_initLayoutMessages('core/session');
 	 
 			$this->renderLayout();
-		}
+		//}
     }
 	
 	public function addProductAction(){
