@@ -47,7 +47,7 @@
 <ul id="nav" class="grid-full<?php if($menuCss) echo " " . implode(" ", $menuCss); ?>">
 
 	<?php //Home link ?>
-    <?php if ($helper->getCfg('mainmenu/home')): ?>
+    <?php /*?><?php if ($helper->getCfg('mainmenu/home')): ?>
         <li id="nav-home-link" class="level0 level-top">
         	<?php if ($helper->getCfg('mainmenu/home_img')): ?>
         		<a class="home-img level-top" href="<?php echo $this->getBaseUrl(); ?>"><?php echo $this->__('Home'); ?></a>
@@ -55,7 +55,7 @@
         		<a class="level-top" href="<?php echo $this->getBaseUrl(); ?>"><span><?php echo $this->__('Home'); ?></span></a>
         	<?php endif; ?>
         </li>
-    <?php endif; ?>
+    <?php endif; ?><?php */?>
 
 	<?php //Main menu categories ?>
     <?php echo $this->renderCategoriesMenuHtml(FALSE, 0, 'level-top'); ?>
