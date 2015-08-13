@@ -2,6 +2,19 @@
 
 class Amm_Product_IndexController extends Mage_Core_Controller_Front_Action
 {
+	
+	public function preDispatch()
+	{
+		parent::preDispatch();
+		if (!Mage::getSingleton('customer/session')->authenticate($this)) {
+			Mage::getSingleton('customer/session')->addError($this->__('Please login to continue.'));
+			$currentUrl = Mage::helper('core/url')->getCurrentUrl();
+			Mage::getSingleton('customer/session')->setBeforeAuthUrl($currentUrl);
+			$this->setFlag('', self::FLAG_NO_DISPATCH, true);
+		}
+	}
+	
+	
     /**
      * Index action
      */
@@ -17,9 +30,9 @@ class Amm_Product_IndexController extends Mage_Core_Controller_Front_Action
 
         Mage::helper('product')->checkTable();
 
-    	if(!$session->isLoggedIn()){
+    	/*if(!$session->isLoggedIn()){
     		$this->_redirectUrl(Mage::helper('customer')->getLoginUrl());
-    	}else{
+    	}else{*/
     		$this->loadLayout();
 
                 $navigationBlock = $this->getLayout()->getBlock('customer_account_navigation');
@@ -28,7 +41,7 @@ class Amm_Product_IndexController extends Mage_Core_Controller_Front_Action
                 }
 
             $this->renderLayout();
-        }
+        //}
     }
 
     public function editAction()
@@ -102,8 +115,75 @@ class Amm_Product_IndexController extends Mage_Core_Controller_Front_Action
     }
 	
 	
+	public function updateProductDetailsAction(){
+		//echo '<pre>'; print_r($_FILES);die;
+		if(isset($_FILES['input_file']['name']) && ($_FILES['input_file']['tmp_name'] != NULL)){
+			$uploader = new Varien_File_Uploader('input_file');
+			$uploader->setAllowedExtensions(array('csv'));
+			$uploader->setAllowRenameFiles(true);
+			$uploader->setFilesDispersion(false);
+			$fileUploadPath = Mage::getBaseDir('media') . DS . 'importcsv' . DS ;
+			$uploader->save($fileUploadPath, $_FILES['input_file']['name'] );		//	file uploaded
+			
+			$file 		=   $_FILES['input_file']['name'];
+			$filepath 	= 	$fileUploadPath.$file;
+			
+			$data				=	array();
+			$updates_handle		=	fopen($filepath, 'r');
+			$i = 0;
+			if($updates_handle) {
+				while($data = fgetcsv($updates_handle, 1000, ",")) {
+					//echo '<pre>'; print_r($data);die;
+					if($i > 0 && count($data)>1){
+						$old_sku		=	$data[0];
+						$name			=	$data[2];
+						try {
+							$_product 		= Mage::getModel('catalog/product');
+							$checkProductId = $_product->getIdBySku($old_sku);
+							if(!$checkProductId){
+								$_product = Mage::getModel('catalog/product')->loadByAttribute('name', $name);
+							}else{
+								$_product = Mage::getModel('catalog/product')->load($checkProductId);
+							}
+							//echo '<pre>';print_r($_product->getData());die;
+							if ($_product) {
+								$description	=	$data[3];
+								$price			=	$data[4];
+								if($data[1]){
+									$new_sku	=	str_replace(' ','-',$data[1]);	
+								}
+								if($new_sku){
+									$_product->setSku($new_sku)->save();
+									$updatedSku	=	$new_sku;
+								}else{
+									$updatedSku	=	$old_sku;
+								}
+								$_product->setName($name);
+								$_product->setDescription($description);
+								$_product->setPrice($price);
+								$_product->save();
+								Mage::getSingleton('core/session')->addSuccess( $this->__("Successfully updated the product details of sku '".$updatedSku."'") );
+							} else {
+								Mage::getSingleton('core/session')->addError( $this->__("The product with sku '".$old_sku."' or name '".$name."' does not exist.") );
+							}
+						} catch (Exception $e) {
+							Mage::getSingleton('core/session')->addError( $this->__("Cannot retrieve products : ".$e->getMessage()));
+						}
+					}
+					$i++;
+				}
+			}
+			fclose($updates_handle);
+			unlink($filepath);		//	Delete file so that the same file does not get imported again
+		}else{
+			Mage::getSingleton('core/session')->addError( $this->__('Please upload a valid csv file.') );
+		}
+		Mage::app()->getResponse()->setRedirect(Mage::getUrl('product'));
+	}
+	
 	public function importAction(){
-		//print_r($_FILES);
+		echo '<pre>'; print_r($_FILES);die;
+		
 		if(isset($_FILES['import_product']['name']) && ($_FILES['import_product']['tmp_name'] != NULL)){
 			$file 		= 	$_FILES['import_product']['tmp_name']; 
 			$handle 	= 	fopen($file,"r"); 
