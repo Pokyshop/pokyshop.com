@@ -780,7 +780,10 @@ var media_gallery_contentJsObject = new Product.Gallery('media_gallery_content',
   |
 <a href="<?php echo $this->getUrl('product/index/export/'); ?>">Export all Products</a>
   |
-  <a id="c_import_products" href="javascript:;">Import Edited Products</a></h3>
+  <a id="c_import_products" href="javascript:;">Import Edited Products</a>
+  |
+  <a id="c_update_product_details" href="javascript:;">Bulk Update Products Details</a>
+  </h3>
 </div>
 
 <div id="m_import_products" class="hidden">
@@ -789,10 +792,27 @@ var media_gallery_contentJsObject = new Product.Gallery('media_gallery_content',
         <input name="import_submit" type="submit" value="Submit" />
     </form>
 </div>
+
+<div id="m_update_product_details" class="hidden">
+	<form name="cmz_frm_update_product_details" id="cmz_frm_update_product_details" enctype="multipart/form-data" method="post" action="<?php echo $this->getUrl('product/index/updateproductdetails/'); ?>">
+    	<div class="row"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'import/csv/sample_update_product_details.csv'; ?>">Click here</a> to download a sample import csv file.</div>
+        
+        <div class="form-group">
+            <label for="input_file">Please upload a csv file to update product(s) data :</label>
+            <input type="file" id="input_file" name="input_file" accept=".csv" required>
+            <button name="submit" type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </form>
+</div>
+
 <script>
 jQuery('a#c_import_products').click(function(event){
 	jQuery('#m_import_products').removeClass('hidden');
 });
+jQuery('a#c_update_product_details').click(function(event){
+	jQuery('#m_update_product_details').removeClass('hidden');
+});
+
 </script>
 <?php } ?>
 
