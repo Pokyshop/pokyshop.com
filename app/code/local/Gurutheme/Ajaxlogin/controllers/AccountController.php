@@ -74,6 +74,8 @@ class Gurutheme_Ajaxlogin_AccountController extends Mage_Customer_AccountControl
                     if ($session->getCustomer()->getIsJustConfirmed()) {
                         $this->_welcomeCustomer($session->getCustomer(), true);
                     }
+					$message = Mage::helper('customer')->__('You have been logged in successfully. You are being redirected...');
+					$response['message'] = $message;
                     $response['success'] = true;
                     $response['url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
                     
