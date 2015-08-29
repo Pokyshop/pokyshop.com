@@ -264,13 +264,14 @@ class Gurutheme_Ajaxlogin_AccountController extends Mage_Customer_AccountControl
 			$customer->getGroupId();
 
 			$password = $this->getRequest()->getPost('password');
-			if(!Mage::getStoreConfig('fastregistration/general/show_password')){
+			//	S:VA we can set a secure password as well
+			/*if(!Mage::getStoreConfig('fastregistration/general/show_password')){
 				$password = Mage::helper('core')->getRandomString(8,
 					Mage_Core_Helper_Data::CHARS_PASSWORD_LOWERS
 					. Mage_Core_Helper_Data::CHARS_PASSWORD_UPPERS
 					. Mage_Core_Helper_Data::CHARS_PASSWORD_DIGITS
 					. Mage_Core_Helper_Data::CHARS_PASSWORD_SPECIALS);
-			}
+			}*/
 			try {
 				$customerErrors = $customerForm->validateData($customerData);
 				if ($customerErrors !== true) {
