@@ -127,23 +127,19 @@
 		//General grid classes
 		$gridClasses = $gc['hover_effect'] ? ' hover-effect' : '';
 		if ($gc['equal_height'])
-			$gridClasses .= ' equal-height'; 
+			//$gridClasses .= ' equal-height'; 
 	?>
     
     <ul class="products-grid category-products-grid itemgrid itemgrid-adaptive itemgrid-<?php echo $gc['column_count']; ?>col<?php if($gridClasses) echo $gridClasses; ?>">
     	<?php foreach ($_productCollection as $_product): ?>
             <li class="item">
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
-                
                 	<img src="<?php echo $theme->getImgUrl($this, $_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
-                    
                     <?php if ($theme->getCfg('category/alt_image')): ?>
                         <?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>   
                     <?php endif; ?>
-                    
                 	<?php //Product labels
 						echo $labelsHelper->getLabels($_product); ?>
-                
                 </a>
                 
                 <?php //Add-to links
@@ -156,7 +152,7 @@
 					}
 				?>
                 
-                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, substr($_product->getName(),0,50), 'name') ?></a></h2>
                 
 				<?php if($_product->getRatingSummary()): ?>
                 	<?php if ($gc['display_rating'] == 1): //Display on hover ?>
