@@ -1,0 +1,866 @@
+/**
+ * Additional styles.
+ */
+
+/* Helper classes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Layout helper classes
+-------------------------------------------------------------- */
+.section-container {}
+.section { padding:10px 0; }
+.section-space { padding:10px; }
+.margin-top { margin-top:20px; }
+.margin-bottom { margin-bottom:20px; }
+.padding-top { padding-top:20px; }
+.padding-bottom { padding-bottom:20px; }
+.float-left { float:left; }
+.float-right { float:right; }
+
+
+
+/* Additional styling for grid elements %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Nav container: stretched or with side padding
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Add top margin for nav element, the same value as left and right margin of the grid unit,
+   and remove margin if stretched */
+.nav > .grid-full { float:left; margin-top:1%; }
+.nav.stretched > .grid-full { margin-top:0; }
+
+
+/* Cart
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Collateral boxes - stretch */
+.cart-left-column .grid-full,
+.cart-right-column .grid-full { width:100%; }
+
+
+
+/* Misc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+
+/**
+ *
+ *
+ *
+ * Common styles
+ *
+ *
+ *
+ */
+
+
+
+/* Common styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* Override specific classes to change colors, fonts, backgrounds etc. */
+
+
+/* Sizes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-top,
+.header .dropdown { line-height:2.6666em; } /* line-height:32px; */
+
+
+/* Blocks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/**/
+.sidebar .block:first-child { margin-top:6px; } /* To align with page title */
+.cms-index-index .sidebar .block:first-child { margin-top:0; } /* Remove margin on home page */
+
+ 
+/* Headings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Secondary headings
+-------------------------------------------------------------- */
+
+/* Account */
+.box-account .box-head h2,
+.order-items h2.table-caption,
+.order-items h2.sub-title,
+.order-items .order-comments h2,
+
+/* Forms headings */
+.fieldset .legend,
+
+/* Log in */
+.account-login h2,
+
+/* Checkout log in */
+#opc-login h3,
+
+/* Multiple checkout */
+.multiple-checkout .col2-set h2.legend,
+.info-set h2.legend
+{
+	font-size:1.5em; /*18px*/
+	font-weight:normal;
+}
+
+/* Headings with bottom border */
+.account-login h2,
+#opc-login h3 { border-bottom:1px solid #e5e5e5; padding-bottom:5px; }
+
+
+/* Section headings
+-------------------------------------------------------------- */
+
+/* Sidebar blocks */
+.block .block-title,
+
+/* Section title */
+.section-title,
+
+/* Cart */
+.cart .crosssell h2,
+.cart .discount h2,
+.cart .shipping h2
+{
+	/* padding:13px 0 7px; */ /*TODO*/
+	padding-top:7px;
+	padding-bottom:7px;
+	border-bottom:1px solid #e5e5e5;
+	font-weight:normal;
+	font-size:1.5em; /*18px*/
+	line-height:1.2222em; /*22px*/
+}
+
+/* Account headings
+-------------------------------------------------------------- */
+
+/* Primary */
+.box-account .box-head h2,
+.order-items h2.table-caption,
+.order-items h2.sub-title,
+.order-items .order-comments h2 {}
+
+/* Secondary */
+.dashboard .box .box-title h3,
+.dashboard .box .box-title h4,
+.order-info-box h2 {}
+
+
+/* Borders
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Elements with horizontal border - normal
+-------------------------------------------------------------- */
+/* CMS */
+.section-line,
+
+/* Page title */
+.my-account .page-title,
+.category-title,
+
+/* Misc */
+.toolbar 
+{ border-color:#e5e5e5; }
+
+/* Elements with horizontal border - lighter
+-------------------------------------------------------------- */
+/* Product page - Add-to-cart area */
+.product-view .product-type-data .price-box,
+.container1-wrapper,
+.container2-wrapper,
+.product-view .add-to-box,
+
+/* Product grid/list */
+.category-products-grid .item,
+.products-list li.item,
+
+/* Pop-ups */
+.remember-me-popup h3,
+.map-popup-heading
+{
+	border-color:#f5f5f5;
+}
+
+/* Elements with vertical border - normal
+-------------------------------------------------------------- */
+/* Product page */
+.product-secondary-column .inner,
+.product-view .box-sidebar .box-sidebar-inner
+{
+	border-color:#e5e5e5;
+}
+
+/* Elements with vertical border - lighter
+-------------------------------------------------------------- */
+/* Product grid/list */
+.products-list .product-shop-inner
+{
+	border-color:#f5f5f5;
+}
+
+
+/* Colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Elements with light gray background
+-------------------------------------------------------------- */
+/* Account */
+.addresses-list .addresses-primary .item,
+.order-info-box,
+
+/* Advanced search */
+.advanced-search-summary,
+
+/* Checkout */
+.opc .gift-messages-form
+{
+	background-color:#f5f5f5;
+}
+
+/* Elements with lighter text
+-------------------------------------------------------------- */
+/* Forms */
+.form-list label,
+
+/* Product grid/list */
+.products-list .ratings,
+.products-grid .ratings,
+.products-list .ratings a,
+.products-grid .ratings a,
+
+/* Breadcrumbs */
+.breadcrumbs li,
+.breadcrumbs a,
+
+/* Layered nav */
+.block-layered-nav dd li,
+
+/* Availability */
+.availability,
+
+/* Reviews */
+.product-view .box-reviews dd .date,
+
+/* Product options */
+.item-options dd,
+.product-options p.note,
+
+/* Prices */
+.price-notice .price,
+.tier-prices li,
+
+/* MSRP price and old price */
+.old-price,
+.map-popup-msrp .price
+{
+	color:#555;
+}
+
+/* Breadcrumbs */
+.breadcrumbs li,
+.breadcrumbs a { color:#000; }
+
+/* Elements with darker border
+-------------------------------------------------------------- */
+/* Cart */
+.data-table thead,
+.cart-table thead tr,
+
+/* Availability */
+.availability-only-details thead
+{
+	border-color:#e5e5e5; /*Currently the same color as other borders*/
+}
+
+/* Interface elements (like buttons or special links) with background color
+-------------------------------------------------------------- */
+/*.btn-remove,
+.btn-remove2,
+.btn-edit,
+.tool-tip .btn-close a {}*/
+
+
+
+/* Effects %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Shadows: for pop-ups, drop-downs etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* IE version included */
+#nav .level0-wrapper,
+#nav.classic .parent > ul,
+
+/* Mini cart */
+#mini-cart .block-content,
+.truncated .truncated_full_value .item-options,
+
+/* Compare drop-down */
+.header .block-compare .block-content,
+
+/* Search autocomplete */
+.header .form-search .search-autocomplete ul,
+
+/* Dropdown */
+.open > .dropdown-toggle.cover,
+.dropdown-menu,
+
+/* Pop-ups and tooltips */
+.remember-me-popup,
+.map-popup,
+.tool-tip,
+#subscribe-form .input-box .validation-advice
+{
+	-moz-box-shadow:0 2px 10px rgba(0,0,0, 0.15);
+	-webkit-box-shadow:0 2px 10px rgba(0,0,0, 0.15);
+	box-shadow:0 2px 10px rgba(0,0,0, 0.15);
+}
+
+
+/* Transitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Product image (and other elements)
+-------------------------------------------------------------- */
+.product-image img {
+	transition:			opacity 300ms ease-in-out;
+	-moz-transition:	opacity 300ms ease-in-out;
+	-webkit-transition:	opacity 300ms ease-in-out;
+	-o-transition:		opacity 300ms ease-in-out;
+}
+.product-image img:hover { opacity:0.85; filter:alpha(opacity=85); }
+
+	/* Remove this transition in product grid. Raplace it with "on item hover" transition. */
+	.products-grid .product-image img:hover { opacity:1; }
+	/*
+	.products-grid .item:hover .product-image img { opacity:0.85; }
+	*/
+
+/* Links and other selected elements
+-------------------------------------------------------------- */
+a,
+.feature div.icon,
+#mobnav-trigger .icon .line,
+.accordion .opener
+{
+	transition:			color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-moz-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-webkit-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-o-transition:		color 450ms ease-in-out, background-color 450ms ease-in-out;
+}
+a:hover,
+.feature:hover div.icon,
+#mobnav-trigger:hover .icon .line,
+.accordion .opener:hover
+{
+	transition-duration:			100ms;
+	-moz-transition-duration:		100ms;
+	-webkit-transition-duration:	100ms;
+	-o-transition-duration:			100ms;
+}
+
+/* Accordions & tabs
+-------------------------------------------------------------- */
+.gen-tabs .tabs a,
+.gen-tabs .acctab,
+
+/* OPC accordion */
+.opc .step-title
+{
+	transition:			color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+}
+
+/* Elements with animated color and borders
+-------------------------------------------------------------- */
+/* Forms */
+input.input-text, select, textarea,
+.product-options ul.options-list,
+
+/* Product image thumbnails */
+.product-view .product-img-box .more-views .thumbnails li a,
+
+/* Product mini-lists */
+.mini-products-list .product-image,
+.cart .crosssell .product-image
+{
+	transition:			color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-webkit-transition:	color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, border-color 300ms ease-in-out;
+}
+
+/* Structural elements
+-------------------------------------------------------------- */
+/* Layered nav */
+.block-layered-nav dd li,
+
+/* Grid */
+.grid12-1,
+.grid12-2,
+.grid12-3,
+.grid12-4,
+.grid12-5,
+.grid12-6,
+.grid12-7,
+.grid12-8,
+.grid12-9,
+.grid12-10,
+.grid12-11,
+.grid12-12,
+.grid-full,
+.grid-col2-sidebar,
+.grid-col2-main,
+
+/* deprecated */
+.grid4-1,
+.grid4-2,
+.grid4-3,
+.grid2-1,
+/* end:deprecated */
+
+/* Products */
+.product-view .product-img-box,
+
+/* Misc */
+.header .logo,
+
+/* Menu */
+#nav > li
+{
+	transition:			all 300ms ease-in-out;
+	-moz-transition:	all 300ms ease-in-out;
+	-webkit-transition:	all 300ms ease-in-out;
+	-o-transition:		all 300ms ease-in-out;
+}
+
+
+/* Shadow for the main containers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.shadow .show-bg {
+	-moz-box-shadow:	0 2px 3px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow:	0 2px 3px rgba(0, 0, 0, 0.1);
+	box-shadow:			0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/**
+ *
+ *
+ *
+ * Built-in static block
+ *
+ *
+ *
+ */
+
+
+
+/* Category page */
+.block_category_above_collection { margin:10px 0; }
+.block_category_below_collection { margin:10px 0; }
+.block_category_above_empty_collection { margin:10px 0; }
+
+/* Product page */
+	
+	/* Main blocks */
+	.block_product_primary_bottom { border-top:1px solid #f5f5f5; margin:10px 0 0; padding:15px 0 0; }
+	.block_product_primary_bottom .addthis_toolbox {}
+	.block_product_secondary_bottom { margin:15px 0; }
+
+	/* Static blocks replacing related and up-sell products */
+	.block_product_replace_related {}
+	.block_product_replace_related {}
+	
+/* Cart */
+.block_cart_below_totals {}
+.block_cart_below_table {}
+
+/* Mini cart */
+.block_mini_cart_above_products { margin:0 0 10px; }
+
+/* OPC */
+.block_opc_below_progress { margin:15px 0; }
+
+/* CMS pages */
+.block_cms_page_top { margin:0 0 15px; }
+
+/* Header */
+.block_header_top_help {}
+.block_header_links_upper {}
+.block_header_top_right {}
+
+/* Footer */
+.block_footer_primary_bottom_left {}
+.block_footer_primary_bottom_right {}
+.block_footer_payment { margin-right:10px; margin-bottom:0px; margin-top:8px; margin-left:20px; }
+
+
+/* Sample block content
+-------------------------------------------------------------- */
+.sample-block {
+	border:2px dotted #ddd;
+	color:#999;
+	margin-top:10px;
+	padding:10px;
+}
+.sample-block:hover {
+	color:#555;
+}
+#nav > li > a{text-transform:uppercase; font-weight:normal;}
+
+.cd-user-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 54, 66, 0.9);
+  z-index: 3;
+  overflow-y: auto;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s 0, visibility 0 0.3s;
+  -moz-transition: opacity 0.3s 0, visibility 0 0.3s;
+  transition: opacity 0.3s 0, visibility 0 0.3s;
+}
+.cd-user-modal.is-visible {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s 0, visibility 0 0;
+  -moz-transition: opacity 0.3s 0, visibility 0 0;
+  transition: opacity 0.3s 0, visibility 0 0;
+}
+.cd-user-modal.is-visible .cd-user-modal-container {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.cd-user-modal-container {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  background: #FFF;
+  margin: 3em auto 4em;
+  cursor: auto;
+  border-radius: 0.25em;
+  -webkit-transform: translateY(-30px);
+  -moz-transform: translateY(-30px);
+  -ms-transform: translateY(-30px);
+  -o-transform: translateY(-30px);
+  transform: translateY(-30px);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.cd-user-modal-container .cd-switcher:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.cd-user-modal-container .cd-switcher li {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.cd-user-modal-container .cd-switcher li:first-child a {
+  border-radius: .25em 0 0 0;
+}
+.cd-user-modal-container .cd-switcher li:last-child a {
+  border-radius: 0 .25em 0 0;
+}
+.cd-user-modal-container .cd-switcher a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #d2d8d8;
+  color: #809191;
+}
+.cd-user-modal-container .cd-switcher a.selected {
+  background: #FFF;
+  color: #505260;
+}
+@media only screen and (min-width: 600px) {
+  .cd-user-modal-container {
+    margin: 4em auto;
+  }
+  .cd-user-modal-container .cd-switcher a {
+    height: 70px;
+    line-height: 70px;
+  }
+}
+
+.cd-form {
+  padding: 1.4em;
+}
+.cd-form .fieldset {
+  position: relative;
+  margin: 1.4em 0;
+}
+.cd-form .fieldset:first-child {
+  margin-top: 0;
+}
+.cd-form .fieldset:last-child {
+  margin-bottom: 0;
+}
+.cd-form label {
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+.cd-form label.image-replace {
+  /* replace text with an icon */
+  display: inline-block;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+  text-shadow: none;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+.cd-form label.cd-username {
+  background-image: url("../images/cd-icon-username.svg");
+}
+.cd-form label.cd-email {
+  background-image: url("../images/cd-icon-email.svg");
+}
+.cd-form label.cd-password {
+  background-image: url("../images/cd-icon-password.svg");
+}
+.cd-form input {
+  margin: 0;
+  padding: 0;
+  border-radius: 0.25em;
+}
+.cd-form input.full-width {
+  width: 100%;
+}
+.cd-form input.has-padding {
+  padding: 12px 20px 12px 50px;
+}
+.cd-form input.has-border {
+  border: 1px solid #d2d8d8;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.cd-form input.has-border:focus {
+  border-color: #343642;
+  box-shadow: 0 0 5px rgba(52, 54, 66, 0.1);
+  outline: none;
+}
+.cd-form input.has-error {
+  border: 1px solid #d76666;
+}
+.cd-form input[type=password] {
+  /* space left for the HIDE button */
+  padding-right: 65px;
+}
+.cd-form input[type=submit] {
+  padding: 16px 0;
+  cursor: pointer;
+  background: #2f889a;
+  color: #FFF;
+  font-weight: bold;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.no-touch .cd-form input[type=submit]:hover, .no-touch .cd-form input[type=submit]:focus {
+  background: #3599ae;
+  outline: none;
+}
+.cd-form .hide-password {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 6px 15px;
+  border-left: 1px solid #d2d8d8;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: #343642;
+}
+.cd-form .cd-error-message {
+  display: inline-block;
+  position: absolute;
+  left: -5px;
+  bottom: -35px;
+  background: rgba(215, 102, 102, 0.9);
+  padding: .8em;
+  z-index: 2;
+  color: #FFF;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  border-radius: 0.25em;
+  /* prevent click and touch events */
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s 0, visibility 0 0.2s;
+  -moz-transition: opacity 0.2s 0, visibility 0 0.2s;
+  transition: opacity 0.2s 0, visibility 0 0.2s;
+}
+.cd-form .cd-error-message::after {
+  /* triangle */
+  content: '';
+  position: absolute;
+  left: 22px;
+  bottom: 100%;
+  height: 0;
+  width: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(215, 102, 102, 0.9);
+}
+.cd-form .cd-error-message.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.2s 0, visibility 0 0;
+  -moz-transition: opacity 0.2s 0, visibility 0 0;
+  transition: opacity 0.2s 0, visibility 0 0;
+}
+.slider .gen-slider-arrows1-pos-top-right .direction-nav{top:0 !important; z-index:9999;}
+.slider .in-col1 .itemslider-x .slides > li{padding:0; width:298px !important;}
+.slider .gen-slider-arrows1 .direction-nav a{background-color:#555; background-position:-10px -10px}
+@media only screen and (min-width: 600px) {
+  .cd-form {
+    padding: 2em;
+  }
+  .cd-form .fieldset {
+    margin: 2em 0;
+  }
+  .cd-form .fieldset:first-child {
+    margin-top: 0;
+  }
+  .cd-form .fieldset:last-child {
+    margin-bottom: 0;
+  }
+  .cd-form input.has-padding {
+    padding: 16px 20px 16px 50px;
+  }
+  .cd-form input[type=submit] {
+    padding: 16px 0;
+  }
+}
+
+.cd-form-message {
+  padding: 1.4em 1.4em 0;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-align: center;
+}
+@media only screen and (min-width: 600px) {
+  .cd-form-message {
+    padding: 2em 2em 0;
+  }
+}
+
+.cd-form-bottom-message {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -30px;
+  text-align: center;
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+.cd-form-bottom-message a {
+  color: #FFF;
+  text-decoration: underline;
+}
+
+.cd-close-form {
+  /* form X button on top right */
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 0;
+  top: -40px;
+  /*background: url("../images/cd-icon-close.svg") no-repeat center center;*/
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@media only screen and (min-width: 1170px) {
+  .cd-close-form {
+    display: none;
+  }
+}
+
+#cd-login, #cd-signup, #cd-reset-password {
+  display: none;
+}
+
+#cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
+  display: block;
+}
+/*login pop up end here*/
+
+button.button span {
+	border:1px solid #ccc !important;
+	color: #333!important;
+	background: none !important;
+}
+button.button span i {
+	color:#777;
+	font-size: 20px;
+}
+
+button.button:hover span {
+	background: none !important;
+	border:1px solid #f77c4c !important;
+	color: #f77c4c !important;
+}
+
+button.button:hover i {
+	color: #f77c4c !important;
+}
+
+.footer button.button span { color:#fff !important}
+
+#top .social-links li a{color:#fff; font-size:32px;}

@@ -1,0 +1,258 @@
+#header-account { position:relative; }
+
+.youama-window-outside { position:relative; }
+.youama-window-outside .close { cursor:pointer; text-align:center; width: 40px;
+    float:right; display: block; color: #636363; text-decoration:none;
+    font-weight:normal; font-size:30px; position:absolute;  top:-13px;
+    right:-10px;
+}
+
+/* Desktop or TV **************************************************************/
+@media only screen and (min-width: 771px) {
+    #header-account {
+        width:350px !important;
+    }
+    .youama-register-window,
+    .youama-login-window { display:none; width:350px; z-index:9998; padding:0; }
+    .youama-window-outside { margin:20px; }
+    .youama-window-box .input-fly input[type="text"],
+    .youama-window-box .input-fly input[type="password"] {
+        width:306px;
+    }
+    .youama-forgot-password a { text-align:right !important; }
+    .yoauam-switch-window { text-align:center; padding:5px; display:inline; }
+}
+/******************************************************************************/
+
+/* Tablet *********************************************************************/
+@media only screen and (max-width: 771px) {
+    .youama-register-window,
+    .youama-login-window {
+        width:400px; padding:10px 30px;
+    }
+    .youama-forgot-password a { text-align:right !important; }
+    .yoauam-switch-window { text-align:center; padding:5px; display:inline; }
+}
+@media only screen and (max-width: 670px) {
+    .youama-register-window,
+    .youama-login-window {
+        width:400px; padding:10px 30px;
+    }
+    .yoauam-switch-window { text-align:center; display:block; padding:0; }
+    .youama-forgot-password a { text-align:center !important; }
+}
+/******************************************************************************/
+
+/* Mobile *********************************************************************/
+@media only screen and (max-width: 480px) {
+    .youama-register-window,
+    .youama-login-window {
+        width:auto; padding:15px;
+    }
+    .yoauam-switch-window { text-align:center; display:block; padding:0; }
+    .youama-window-box .input-fly input[type="text"],
+    .youama-window-box .input-fly input[type="password"] {
+        width:100%;
+    }
+}
+/******************************************************************************/
+
+.youama-ajaxlogin-loader {
+    display:none; position:absolute; top:50%; left:50%; margin-left:-20px;
+    margin-top:-15px; height:31px; width:40px; z-index:9999;
+    background: url('../../../images/youama/ajaxlogin/loader.gif') no-repeat center center;
+}
+.youama-window-title h3 { display:inline; margin:0; color:#3399cc; }
+.yoauam-switch-window {
+    cursor:pointer; color:#3399cc; line-height:33px;
+}
+.youama-window-box { margin-top:15px; }
+.youama-window-subtitle p {
+    margin:20px 0 5px 0; width:100%; font-size:14px; font-weight:bold; color:#888;
+    border-bottom:1px solid #3399cc;
+}
+.youama-window-box .input-fly { padding:5px 0; width:100% }
+.youama-window-box .input-fly label { font-size:14px; line-height:26px; }
+.youama-window-box .input-fly input[type="text"],
+.youama-window-box .input-fly input[type="password"] {
+    font-size:15px; padding:3px; height:40px;
+}
+.youama-ajaxlogin-error { color:#eb340a; }
+.err-licence {  }
+.err-newsletter {  }
+.youama-window-box label a { display:inline !important; padding:0 !important; }
+.youama-window-box .input-fly-checkbox input { margin:7px 7px 0 0; }
+.youama-window-box .input-fly-checkbox label { font-size:12px; width:auto; }
+.youama-window-box .input-fly .youama-ajaxlogin-error { }
+.youama-window-box .input-fly-checkbox .youama-ajaxlogin-error { text-align:left; }
+.youama-window-box .box-contents {  }
+.youama-window-box .box-contents-button { width:100%; margin-top:20px; }
+.youama-window-box .box-contents-button button { }
+.youama-window-box .youama-forgot-password { margin-top:10px; }
+
+/*	S:VA	Modified Css	*/
+.youama-register-window{
+	display: block;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 99999 !important;
+	background-color: rgba(0, 0, 0, 0.498039);
+}
+.youama-window-outside {
+	width: 563px;
+	margin: 20px auto;
+	background-color: #fff;
+	padding: 20px;
+}
+.youama-window-outside .close {
+	top:5px;
+	right:-5px;
+}
+.youama-window-box .input-fly input[type="text"], .youama-window-box .input-fly input[type="password"] {
+	height: 18px;
+	font-size:12px;
+}
+.youama-window-content.youama-showhideme button.button span span{
+	height:28px;
+	line-height:28px;
+}
+.youama-window-subtitle p {
+	border-bottom:none;
+}
+/*	S:VA	Modified Css	*/
+.signup-cont-box .tp-logo-w {
+  height: 75px;
+  background: url(../images/signup-btstrip.jpg) 0 bottom no-repeat;
+}
+.signup-cont-box .lgowrap {
+  float: left;
+  margin: 5px;
+}
+.signup-cont-box .new-user-reg .h1class {
+  font-size: 28px;
+  font-weight: bold;
+  color: #3b589e;
+  text-transform: capitalize;
+}
+.signup-cont-box .new-user-reg {
+  overflow: hidden;
+  padding: 10px 0 15px;
+}
+.signup-cont-box .new-user-reg p {
+  width: 60%;
+  margin: 16px auto 24px;
+  font-size: 13px;
+  color: #666666;
+  text-align: left;
+  line-height: 18px;
+}
+.signup-cont-box .new-user-reg .new-user-form {
+  width: 225px;
+  padding: 0 18px 0 22px;
+}
+.signup-cont-box .new-user-reg .new-user-form .sign-text-field {
+  border: 1px solid #ccc;
+  float: left;
+  margin: 0 0 12px;
+  padding: 8px 6px;
+  width: 200px;
+  color: #9b9b9b;
+}
+.sgn-error {
+  background-image: none !important;
+  color: #3d6611;
+  margin: -2px 0 8px;
+  padding: 7px !important;
+  position: relative;
+  font-size: 11px;
+  border-radius: 3px;
+  display: none;
+}
+.signup-cont-box .snlogin-wrap {
+  text-align: center;
+  margin: 10px 0 0;
+}
+.signup-cont-box .mlogin-btn {
+  background: url(../images-v3/sigup-sub-sprite.png) 0 -102px no-repeat;
+  display: inline-block;
+  padding: 20px 55px;
+}
+.signup-cont-box .wlogin-btn {
+  background: url(../images-v3/sigup-sub-sprite.png) 0 -50px no-repeat;
+  display: inline-block;
+  padding: 20px 55px;
+}
+.signup-cont-box .new-user-reg .separator {
+  border-left: 1px dotted #d6d6d6;
+  display: inline-block;
+  height: 200px;
+  margin: 4px 12px;
+  vertical-align: top;
+  width: 0;
+}
+.signup-cont-box .new-user-reg .separator > div {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #adaeaf;
+  border-radius: 50%;
+  font-family: DIN,Helvetica,Arial,sans-serif;
+  height: 24px;
+  line-height: 26px;
+  margin: 80px 0 0 -13px;
+  width: 24px;
+}
+.signup-cont-box .new-user-reg .social {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 270px;
+  margin: 50px auto 0;
+}
+.signup-cont-box .new-user-reg .social .button.button {
+  height: 34px;
+  width: 198px;
+}
+.signup-cont-box .new-user-reg .social .button.fb {
+  background-color: #3b589e;
+  color: #fff;
+  display: block;
+  margin-bottom: 13px;
+}
+.signup-cont-box .new-user-reg .social .button.gplus {
+  background-color: #d41c1c;
+  color: #fff;
+  display: block;
+}
+.lgowrap > img{width:222px;}
+.signup-cont-box .sign-tptxt {
+    border-bottom: 1px solid #ccc;
+    color: #c6d1e5;
+    font-size: 18px;
+    margin: 0 0 15px;
+    padding: 0 0 5px;
+    text-align: left;
+    width: 213px;
+}
+.signup-cont-box .sign-tptxt {
+    border-bottom: 1px solid #ccc;
+    color: #c6d1e5;
+    font-size: 18px;
+    margin: 0 0 15px;
+    padding: 0 0 5px;
+    text-align: left;
+    width: 213px;
+}
+
+.tp-logo-w {
+    background: rgba(0, 0, 0, 0) url("../../images/signup-btstrip.jpg") no-repeat scroll 0 bottom;
+    height: 76px;
+}
+
+.sign-left, .sign-right {
+    background: rgba(0, 0, 0, 0) url("../../images/sn-sep.jpg") no-repeat scroll right center;
+    margin: 8px 0 0;
+    padding: 10px 30px;
+    width: 235px;
+}
