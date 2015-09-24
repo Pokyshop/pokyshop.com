@@ -1,0 +1,32 @@
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+<form action="<?php echo Mage::getUrl().'inquiry/index/getintouch'; ?>" id="contactForm" method="post" class="scaffold-form">
+  <div class="form-group">
+    <div class="controls">
+      <input class="input-text required-entry form-control" type="text" id="name" name="name" placeholder="* Your name..." />
+      <div class="error left-align" id="err-name">Please enter name.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="controls">
+      <input class="input-text required-entry validate-email form-control" type="email" name="email" id="email" placeholder="* Your email..." autocapitalize="off" autocorrect="off" spellcheck="false" />
+      <div class="error left-align" id="err-email">Please enter valid email adress.</div>
+    </div>
+  </div>
+  <?php /*?><input name="phone_no" id="phone_no" value="" class="input-text required-entry form-control" type="tel" placeholder="Phone Number"/><?php */?>
+  <div class="form-group">
+    <div class="controls">
+      <textarea class="form-control" name="comment" id="comment" placeholder="* Comments..."></textarea>
+      <div class="error left-align" id="err-comment">Please enter your comment.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="controls">
+      <button id="send-mail" class="message-btn">Send message</button>
+    </div>
+  </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script> 

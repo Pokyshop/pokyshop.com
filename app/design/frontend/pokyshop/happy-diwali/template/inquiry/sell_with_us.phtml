@@ -1,0 +1,174 @@
+<form action="<?php echo Mage::getUrl().'inquiry/index/sellwithus'; ?>" id="sellwithusForm" method="post" class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Shop Name</label>
+    <div class="col-sm-8">
+      <input type="text" placeholder="Shop Name" id="shop_name" class="form-control input-text required-entry" name="shop_name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Phone Number</label>
+    <div class="col-sm-8">
+      <input type="tel" placeholder="Phone Number" class="form-control input-text required-entry" value="" id="phone_no1" name="phone_no1">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Email Address</label>
+    <div class="col-sm-8">
+      <input type="email" spellcheck="false" class="form-control input-text required-entry validate-email" value="" name="email" placeholder="Enter Email" autocapitalize="off" autocorrect="off" spellcheck="false">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Alternate Email Address</label>
+    <div class="col-sm-8">
+      <input type="email" placeholder="Enter Alternate Email" class="form-control" name="alternate_email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Company Name</label>
+    <div class="col-sm-8">
+      <input type="text" placeholder="Company Name" class="form-control input-text required-entry" name="company_name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Contact Person Name</label>
+    <div class="col-sm-8">
+      <input type="text" placeholder="Contact Person Name" class="form-control" name="contact_person_name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Street Address</label>
+    <div class="col-sm-8">
+      <input type="text" placeholder="Line 1" class="input-text required-entry form-control" name="address_line1">
+    </div>
+    <label class="col-sm-4 control-label"></label>
+    <div class="col-sm-8">
+      <input type="text" placeholder="Line 2" class="form-control margin-top-5" name="address_line2">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">City </label>
+    <div class="col-sm-8">
+      <input type="text" placeholder="City" class="form-control input-text required-entry" name="city">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Zip/Postal Code</label>
+    <div class="col-sm-8">
+      <input type="text" placeholder="Zip/Postal Code" class="form-control" name="postal_code">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">State/Province</label>
+    <div class="col-sm-8">
+      <?php	$stateCollection = Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray(); ?>
+      <?php if (count($stateCollection) > 0){ ?>
+      <select name="state" id="state" class="form-control required-entry validate-select">
+        <?php foreach($stateCollection as $state): ?>
+        <option value="<?php echo $state['label']//$state['value'] ?>"><?php echo $state['label'] ?></option>
+        <?php endforeach; ?>
+      </select>
+      <?php }else{ ?>
+      <input name="state" id="state" class="input-text required-entry form-control"  placeholder="State"/>
+      <?php } ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">About Shop</label>
+    <div class="col-sm-8">
+      <textarea placeholder="About Shop" class="form-control input-text required-entry" name="about_shop"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" class="required-entry" name="i_agree">
+          I agree that i have read and understood the <a href="<?php echo Mage::getUrl('user-agreement')?>"> Pokyshop User Agreement</a> &amp; the <a href="<?php echo Mage::getUrl('privacy-policy')?>">Privacy Policy</a> </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="text-right col-sm-12">
+      <button class="button" type="submit">Submit</button>
+    </div>
+  </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('sellwithusForm', true);
+//]]>
+</script>
+<?php /*?><div class="form-group">
+<label class="col-sm-4 control-label">Password</label>
+<div class="col-sm-8">
+<input type="password" class="form-control" placeholder="password" required>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">Confirm Password</label>
+<div class="col-sm-8">
+<input type="password" class="form-control" placeholder="password" required>
+</div>
+</div><?php */?>
+<?php /*?><div class="form-group">
+<label class="col-sm-4 control-label">Country </label>
+<div class="col-sm-8">
+<select class="form-control">
+<option>Country  1</option>
+<option>Country  2</option>
+<option>Country  3</option>
+<option>Country  4</option>
+<option>Country  5</option>
+</select>
+</div>
+</div><?php */?>
+<?php /*?>
+<div class="form-group">
+<label class="col-sm-4 control-label">Bank Name</label>
+<div class="col-sm-8">
+<input type="text" class="form-control" placeholder="Bank Name" required>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">Bank Account Number </label>
+<div class="col-sm-8">
+<input type="text" class="form-control" placeholder="Bank Account Number" required>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">Bank Branch Address</label>
+<div class="col-sm-8">
+<textarea class="form-control" placeholder="Bank Branch Address" required>
+</textarea>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">Cheque to be made in Name of</label>
+<div class="col-sm-8">
+<input type="text" class="form-control" placeholder="Cheque to be made in Name of" required>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">PAN No</label>
+<div class="col-sm-8">
+<input type="text" class="form-control" placeholder="PAN No" required>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">IFSC code of Bank</label>
+<div class="col-sm-8">
+<input type="text" class="form-control" placeholder="IFSC code" required>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label">VAT / TIN</label>
+<div class="col-sm-8">
+<input type="text" class="form-control" placeholder="VAT / TIN" required>
+</div>
+</div>
+<?php */?>
+<?php /*?><div class="margin-top-20">
+<div class="border-seller padding10">
+<h3>Note</h3>
+Your confirmation will be sent to your email address. </div>
+</div><?php */?>

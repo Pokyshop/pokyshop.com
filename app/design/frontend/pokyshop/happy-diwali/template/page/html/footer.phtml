@@ -1,0 +1,337 @@
+<!--footer section start here-->
+<footer class="footer-section border-top">
+  <div class="padding-top-20 container">
+    <div class="seo-content">
+      <div class="seo-content-inner"> <a href="#" class="center-block text-center">Pokyshop.com is an online shopping start-up in its infancy.  ... <span class="seo-read-more">read more »</span> </a>
+        <div class="hide">We offer a wide range of latest fashion apparels and lifestyle products to suit everyone’s taste. Apart from that, what we have in store for you are the jewels of traditional Indian crafts such as Blue Pottery, Marble crafts, and Handicrafts. We are not just an online fashion site, but we are also the sellers of the aforementioned craft products that haven’t been able to come in light yet due to the unwillingness of any other site to sell them.</div>
+      </div>
+    </div>
+    <div class="row margin-top-20 padding-bottom-20">
+      <div class="col-md-4 col-sm-5 col-xs-12 row">
+        <div class="footer-left clearfix padding10">
+          <div class="col-sm-6 col-xs-12">
+            <div class="contact">
+              <h2 class="title margin-top-10">Need Help?</h2>
+              <ul class="list-unstyled">
+                <li class="order-status"> <a href="#"><span>Order Status</span></a> </li>
+                <li class="ordering-payment"> <a href="#"><span>Ordering &amp; Payment</span></a> </li>
+                <li class="shipping-information"> <a href="#"><span>Shipping Information</span></a> </li>
+                <li class="returns-exchanges"> <a href="#"><span>Returns &amp; Exchanges</span></a> </li>
+                <li class="international-orders"> <a href="#"><span>International Orders</span></a> </li>
+                <li class="item--affiliates"> <a href="#"><span>Affiliates</span></a> </li>
+                <li class="all-help-topics"> <a href="#"><span>See All Help Topics</span></a> </li>
+              </ul>
+            </div>
+            <a href="" class="btn button-orange button--wayra"> <span>Contact Us</span> </a> </div>
+          <div class="col-sm-6 col-xs-12">
+            <ul class="list-unstyled footer-links margin-top-10">
+              <li><a href="#"><i class="fa fa-users"></i> 24*7 Support</a></li>
+              <li><a href="#"><i class="fa fa-rupee"></i> Lowest Prices </a></li>
+              <li><a href="#"><i class="fa fa-smile-o"></i> Customer Satisfaction </a></li>
+              <li><a href="#"><i class="fa fa-hourglass-3"></i> Express Delivery</a></li>
+              <li><a href="#"><i class="fa fa-female"></i> Size Chart</a></li>
+              <li><a href="#"><i class="fa fa-refresh"></i> Free &amp; Easy Returns</a></li>
+              <li><a href="#"><i class="fa fa-times-circle-o"></i> Online Cancellations</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7 col-xs-12">
+        <div class="newsletter clearfix">
+        <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml();?>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            <div class="sell-footer margin-top-10">
+              <div class="row">
+                <div class="col-xs-12 col-sm-5"> <img src="http://placehold.it/100x133" class="img-responsive"> </div>
+                <div class="col-xs-12 col-sm-7">
+                  <p class="no-margin"> Sell with us<br>
+                    <strong>Make in India</strong><br>
+                    and Sell with <span class="text-orange">Pokyshop</span><br>
+                    want to be our instant seller right now </p>
+                  <button type="submit" class="btn button-orange button--wayra margin-top-5">Subscribe</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="explore col-xs-12 col-sm-3">
+            <h2 class="title">Explore</h2>
+            <ul class="list-unstyled">
+              <li> <a href="#"><span>Our Story</span></a> </li>
+              <li> <a href="#"><span>Work at Free People</span></a> </li>
+              <li> <a href="#"><span>Wholesale Website</span></a> </li>
+              <li> <a href="#"><span>Wishlists</span></a> </li>
+              <li> <a href="#"><span class="ico"></span><span>BLDG 25 Blog</span></a> </li>
+            </ul>
+          </div>
+          <div class="poky-blog col-xs-12 col-sm-3 margin-top-20"> <img src="http://placehold.it/141x146" alt="poky-blog" class="img-responsive"> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright border-top">
+    <div class="container">
+      <ul class="list-inline text-center">
+        <li class="copyright-copy">&copy; <?php echo date('Y');?> Pokyshop.com. All Rights Reserved.</li>
+        <li class="border-right"> <a href="#"><span>Terms of Use</span></a> </li>
+        <li> <a href="#"><span>Privacy &amp; Security</span></a> </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</footer>
+<!--footer section end here-->
+
+
+<script type="text/javascript">
+$(function() {
+	//custom animations to use
+	//in the transitions
+	var animations		= ['right','left','top','bottom','rightFade','leftFade','topFade','bottomFade'];
+	var total_anim		= animations.length;
+	//just change this to one of your choice
+	var easeType		= 'swing';
+	//the speed of each transition
+	var animSpeed		= 450;
+	//caching
+	var $hs_container	= $('#hs_container');
+	var $hs_areas		= $hs_container.find('.hs_area');
+	
+	//first preload all images
+	$hs_images          = $hs_container.find('img');
+	var total_images    = $hs_images.length;
+	var cnt             = 0;
+	$hs_images.each(function(){
+		var $this = $(this);
+		$('<img/>').load(function(){
+			++cnt;
+			if(cnt == total_images){
+				$hs_areas.each(function(){
+					var $area 		= $(this);
+					//when the mouse enters the area we animate the current
+					//image (random animation from array animations),
+					//so that the next one gets visible.
+					//"over" is a flag indicating if we can animate 
+					//an area or not (we don't want 2 animations 
+					//at the same time for each area)
+					$area.data('over',true).bind('mouseenter',function(){
+						if($area.data('over')){
+							$area.data('over',false);
+							//how many images in this area?
+							var total		= $area.children().length;
+							//visible image
+							var $current 	= $area.find('img:visible');
+							//index of visible image
+							var idx_current = $current.index();
+							//the next image that's going to be displayed.
+							//either the next one, or the first one if the current is the last
+							var $next		= (idx_current == total-1) ? $area.children(':first') : $current.next();
+							//show next one (not yet visible)
+							$next.show();
+							//get a random animation
+							var anim		= animations[Math.floor(Math.random()*total_anim)];
+							switch(anim){
+								//current slides out from the right
+								case 'right':
+									$current.animate({
+										'left':$current.width()+'px'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'left'		: '0px'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;
+								//current slides out from the left
+								case 'left':
+									$current.animate({
+										'left':-$current.width()+'px'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'left'		: '0px'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;
+								//current slides out from the top	
+								case 'top':
+									$current.animate({
+										'top':-$current.height()+'px'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'top'		: '0px'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;
+								//current slides out from the bottom	
+								case 'bottom':
+									$current.animate({
+										'top':$current.height()+'px'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'top'		: '0px'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;
+								//current slides out from the right	and fades out
+								case 'rightFade':
+									$current.animate({
+										'left':$current.width()+'px',
+										'opacity':'0'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'left'		: '0px',
+											'opacity'	: '1'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;
+								//current slides out from the left and fades out	
+								case 'leftFade':
+									$current.animate({
+										'left':-$current.width()+'px','opacity':'0'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'left'		: '0px',
+											'opacity'	: '1'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;
+								//current slides out from the top and fades out	
+								case 'topFade':
+									$current.animate({
+										'top':-$current.height()+'px',
+										'opacity':'0'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'top'		: '0px',
+											'opacity'	: '1'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;
+								//current slides out from the bottom and fades out	
+								case 'bottomFade':
+									$current.animate({
+										'top':$current.height()+'px',
+										'opacity':'0'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'top'		: '0px',
+											'opacity'	: '1'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;		
+								default:
+									$current.animate({
+										'left':-$current.width()+'px'
+									},
+									animSpeed,
+									easeType,
+									function(){
+										$current.hide().css({
+											'z-index'	: '1',
+											'left'		: '0px'
+										});
+										$next.css('z-index','9999');
+										$area.data('over',true);
+									});
+									break;
+							}	
+						}
+					});
+				});
+				
+				//when clicking the hs_container all areas get slided
+				//(just for fun...you would probably want to enter the site
+				//or something similar)
+				$hs_container.bind('click',function(){
+					$hs_areas.trigger('mouseenter');
+				});
+			}
+		}).attr('src',$this.attr('src'));
+	});			
+});
+</script>
+        
+<!-- Initialize Swiper -->
+<script type="text/javascript">
+    var swiper = new Swiper('.swiper-parallax-container', {
+        pagination: '.swiper-pagination',
+        parallax: true,
+		paginationClickable: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: 5000,
+        autoplayDisableOnInteraction: false
+    });
+
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: 5000,
+        autoplayDisableOnInteraction: false
+    });
+
+var sticky = document.querySelector('.sticky');
+var origOffsetY = sticky.offsetTop;
+
+function onScroll(e) {
+  	window.scrollY >= origOffsetY ? sticky.classList.add('navbar-fixed-top') :
+	sticky.classList.remove('navbar-fixed-top');
+}
+document.addEventListener('scroll', onScroll);
+
+$('#loginModal').on('shown.bs.modal', function () {
+	$('#myInput').focus()
+})
+</script>

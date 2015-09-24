@@ -1,0 +1,44 @@
+<!--Nav Section Start here-->
+
+<header class="header">
+  <div class="container">
+    <div class="clearfix margin-top-10 margin-bottom-10">
+      <div class="col-sm-3"> <a class="logo" href="<?php echo $this->getUrl('') ?>"> <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></div>
+      <div class="col-sm-5">
+        <ul class="list-inline ads-listing">
+          <li> <a href="#"> <span class="ads-icon btn-info"> <i class="market-place img-sprite"></i> </span> <span>Marketplace</span> </a> </li>
+          <li> <a href="#"> <span class="ads-icon btn-info"> <i class="fa fa-newspaper-o"></i> </span> <span>Classified</span> </a> </li>
+          <li> <a href="#"> <span class="ads-icon btn-info"> <i class="fa fa-users"></i> </span> <span>Community</span> </a> </li>
+        </ul>
+      </div>
+      <ul class="col-sm-4 list-inline text-right">
+        <li>
+          <button class="btn no-bg" data-toggle="modal" data-target="#loginModal">Login/Sign Up</button>
+        </li>
+        <li class="hide-sticky"><a href="#" class="btn text-black">Compare</a></li>
+        <li class="show-sticky hide"><a href="#cd-search" class="cd-search-trigger"><span></span></a></li>
+        <li class="add-cart-btn"><a href="#" class="btn cart-btn text-black"> <i class="fa fa-shopping-cart"></i><span class="badge">5</span> </a> </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<?php //	Showing the login popup html only when user is not logged in
+if(!Mage::helper('sarah')->getUserName()){
+	echo $this->getLayout()->createBlock('core/template')->setTemplate('ajaxlogin/login_popup.phtml')->toHtml();
+} ?>
+    
+<div class="cd-main-header">
+  <ul class="cd-header-buttons">
+    <li><a class="cd-search-trigger" href="#cd-search"><span></span></a></li>
+    <li><a class="cd-nav-trigger" href="#cd-primary-nav"><span></span></a></li>
+  </ul>
+  <!-- cd-header-buttons --> 
+</div>
+<div class="cd-overlay"></div>
+<?php echo $this->getChildHtml('topMenu'); ?>
+
+<div id="cd-search" class="cd-search">
+	<?php echo $this->getChildHtml('topSearch'); ?>
+</div>
+<!--Nav Section end here--> 

@@ -1,0 +1,13 @@
+<h3 class="title">Sign up for our emails! <small>New friends get <strong>free shipping</strong> on your first order!</small></h3>
+
+<form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail" class="validate signup-form">
+
+   <input type="email" autocapitalize="off" autocorrect="off" spellcheck="false" name="email" id="newsletter" title="<?php echo $this->__('Sign up for our newsletter') ?>" class="input-text required-entry validate-email form-control" placeholder="enter your email address..." required/>
+    <button type="submit" title="<?php echo $this->__('Sign up now!') ?>" class="btn button-orange button--wayra"><?php echo $this->__('Sign up now!') ?></button>
+       
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+//]]>
+</script>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<!--
+    Default layout, loads most of the pages
+    -->
+    <default>
+		<reference name="head">
+			<!-- Adding single css including bootstrap-theme and font-awesome -->
+			<action method="addItem"><type>skin_css</type><name>css/bootstrap.min.css</name></action>
+			<action method="addItem"><type>skin_css</type><name>css/common.css</name></action>
+			
+			<!--	Magento core js are clubbed into one js		-->
+			<action method="addJs"><script>core.js</script></action>											
+			<!--jQuery and other third party plugins		-->			
+			<action method="addJs"><script>common.js</script></action>								
+			<!--	Theme specific js for custom js operations	-->
+			<!--<action method="addItem"><type>skin_js</type><name>js/custom.js</name></action>	-->	
+					
+		</reference>
+    </default>
+
+	
+	<!--	Home Page Only	-->
+	<cms_index_index>
+		<reference name="root">
+            <reference name="head">
+                <action method="addItem"><type>skin_css</type><name>css/home.css</name></action>
+				<action method="removeItem"><type>skin_css</type><name>css/cms.css</name></action>
+			</reference>
+        </reference>
+    </cms_index_index>
+	
+	
+	<!--	All Catalog Pages with Display Settings Products Only	-->
+	<catalog_category_layered>
+		<reference name="head">
+        	<action method="addItem"><type>skin_css</type><name>css/catalog.css</name></action>
+        </reference>
+    </catalog_category_layered>
+	
+	
+	<!--	All Catalog Pages with Display Settings Static Block Only	-->
+	<catalog_category_default>
+		<reference name="head">
+        	<action method="addItem"><type>skin_css</type><name>css/catalog.css</name></action>
+        </reference>
+	</catalog_category_default>
+	 
+	 
+	<!--	All Product Pages	-->
+	<catalog_product_view>
+        <reference name="head">
+			<action method="addItem"><type>skin_css</type><name>css/product.css</name></action>
+			<action method="addJs"><script>varien/product.js</script></action>
+			<action method="addJs"><script>varien/configurable.js</script></action>
+			<action method="addItem"><type>skin_js</type><name>js/simple_product_pricing.js</name></action>
+		</reference>
+    </catalog_product_view>
+	
+	
+	<!--	All Cart Pages	-->
+	<checkout_cart_index>
+        <reference name="head">
+			<remove name="top.menu"/>
+			<remove name="top.search"/>
+			<action method="addItem"><type>skin_css</type><name>css/cart.css</name></action>
+		</reference>
+    </checkout_cart_index>
+	
+	
+	<!--	All Checkout Pages	-->
+	<onepagecheckout_index_index>
+        <reference name="head">
+			<action method="addItem"><type>skin_css</type><name>css/checkout.css</name></action>
+		</reference>
+    </onepagecheckout_index_index>
+	
+	
+	<!--	All Cms Pages	-->
+    <cms_page>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>css/cms.css</name></action>
+		</reference>
+    </cms_page>
+</layout>
