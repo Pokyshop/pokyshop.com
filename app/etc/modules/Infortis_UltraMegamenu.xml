@@ -9,7 +9,7 @@
 <config>
     <modules>
         <Infortis_UltraMegamenu>
-            <active>true</active>
+            <active>false</active>
             <codePool>local</codePool>
         </Infortis_UltraMegamenu>
     </modules>
