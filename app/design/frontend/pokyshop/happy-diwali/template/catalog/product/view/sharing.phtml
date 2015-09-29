@@ -1,0 +1,29 @@
+<?php 
+$_product 			= $this->getProduct();
+$_helper 			= $this->helper('catalog/output');
+$_productName 		= urlencode(trim($_helper->productAttribute($_product, $_product->getName(), 'name')));
+$_productImageUrl 	= urlencode(trim($this->helper('catalog/image')->init($_product, 'image')));
+$_productUrl 		= urlencode(trim($_product->getProductUrl()));
+$_u 				= 'p[url]=' . $_productUrl . '&p[images][0]=' . $_productImageUrl . '&p[title]=' . $_productName . '&p[summary]=' . urlencode(trim($_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description')));
+?>    
+    
+<ul class="sharing-links">
+    <li><a onclick="myFbFunction()" title="Share on Facebook"><i class="fa fa-facebook"></i></a></li>
+    <li><a onclick="myTweetFunction()" title="Share on Twitter"><i class="fa fa-twitter"></i></a></li>
+    <li><a onclick="myGoogleFunction()" title="Share on Google+"><i class="fa fa-google-plus"></i></a></li>
+    <li><a onclick="myPinFunction()" title="Share on Pinterest"><i class="fa fa-pinterest"></i></a></li>
+</ul>
+<script type="text/javascript">					
+function myFbFunction(){							
+	window.open('https://www.facebook.com/share.php?s=100&<?php echo $_u;?>','face','height=600,width=650,scrollbars=yes').focus();	
+}
+function myTweetFunction(){							
+	window.open('https://twitter.com/intent/tweet?url=<?php echo $_productUrl;?>&text=<?php echo $_productName;?>&via=Pokyshop','tweet','height=600,width=650').focus();	
+}
+function myGoogleFunction(){							
+	window.open('https://plus.google.com/share?url=<?php echo $_productUrl;?>','gplus','height=600,width=650,scrollbars=yes').focus();	
+}
+function myPinFunction(){
+	window.open( 'https://pinterest.com/pin/create/bookmarklet/?media=<?php echo $_productImageUrl;?>&url=<?php echo $_productUrl;?>&description=<?php echo $_productName;?>','pin','height=600,width=650').focus();	
+}							
+</script>
