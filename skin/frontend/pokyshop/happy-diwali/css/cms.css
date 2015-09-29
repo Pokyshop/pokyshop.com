@@ -1,10 +1,20 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700);
+@font-face {
+    font-family: 'robotothin';
+    src: url('../fonts/Roboto-Thin-webfont.eot');
+    src: url('../fonts/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Thin-webfont.woff') format('woff'),
+         url('../fonts/Roboto-Thin-webfont.ttf') format('truetype'),
+         url('../fonts/Roboto-Thin-webfont.svg#robotothin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+
+}
 .margin-top-5 {
 	margin-top:5px;
 }
 
 body.make-in-india {
-    font-family:'Roboto', sans-serif;
+    font-family: 'robotothin';
     color: #FFF;
     line-height:1.2em;
     font-size:17px;
