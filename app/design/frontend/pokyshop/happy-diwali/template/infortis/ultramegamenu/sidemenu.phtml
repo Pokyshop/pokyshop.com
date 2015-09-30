@@ -1,0 +1,60 @@
+<?php
+/**
+ * Sidebar menu
+ */
+?>
+<?php
+	$helper = Mage::helper('ultramegamenu');
+	$visibilityClass = $helper->getCfg('sidemenu/hide_on_mobile') ? 'hide-below-768' : '';
+?>
+<?php if ($helper->getCfg('sidemenu/enable')){ ?>
+    <h4><?php echo $this->__('Categories'); ?></h4>  
+    <?php 
+    $categoryId 		=	'2';	//	root category id of Default Category
+    $categoryCollection = 	Mage::getModel('catalog/category')->load($categoryId);
+    $levelOneCategoryArray	=	$categoryCollection->getChildrenCategories();
+    if(count($categoryCollection) > 0) { ?>
+    <?php if(count($levelOneCategoryArray) > 0) { ?>
+        <div class="panel-group" id="accordion">  
+              <?php foreach($levelOneCategoryArray as $key1) {
+                $categoryCollection2 	= 	Mage::getModel('catalog/category')->load($key1['entity_id']);
+                $levelTwoCategoryArray	= 	$categoryCollection2->getChildrenCategories()->toArray();
+                $childCategoryCount		=	count($levelTwoCategoryArray);
+               ?>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#category-<?php echo $categoryCollection2->getId();?>"> <?php echo $categoryCollection2->getName();?> <?php if( $childCategoryCount > 0) {?><i class="indicator fa fa-plus pull-right"></i><?php } ?></a> </h4>
+                </div>
+                <?php 
+                if( $childCategoryCount > 0) { ?>
+                <div id="category-<?php echo $categoryCollection2->getId();?>" class="panel-collapse collapse">
+                    <div class="panel-body">
+                    <ul class="list-group">
+                        <?php foreach($levelTwoCategoryArray as $key2) {	
+                            $categoryCollection3 		= 	Mage::getModel('catalog/category')->load($key2['entity_id']);
+                            $levelThreeCategoryArray	=	$categoryCollection3->getChildrenCategories()->toArray();
+                            $childCategoryCount2		=	count($levelThreeCategoryArray);
+                        ?>
+                        <li class="list-group-item"><a href="<?php echo $categoryCollection3->getUrl(); ?>"> <?php echo $categoryCollection3->getName();?></a></li>
+                        <?php  }	?>
+                    </ul>
+                    </div>
+                </div>
+                <?php }	//	end if  ?>
+              </div>
+              <?php  }	// end foreach levelOneCategoryArray	?>
+            </div>
+    <?php } //	end if ?>
+    <?php } //	end if ?>
+<?php //echo $this->renderCategoriesMenuHtml(TRUE, 0, 'level-top'); ?>
+<script type="text/javascript">
+function toggleChevron(e) {
+jQuery(e.target)
+	.prev('.panel-heading')
+	.find("i.indicator")
+	.toggleClass('fa-minus fa-plus');
+}
+jQuery('#accordion').on('hidden.bs.collapse', toggleChevron);
+jQuery('#accordion').on('shown.bs.collapse', toggleChevron);
+</script>      
+<?php }?>

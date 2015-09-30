@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php $bodyClasses = $this->getBodyClass() .' '. $this->helper('ultimo')->getThemeBodyClasses(); ?>
+<body class="<?php echo $bodyClasses; ?>">
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div class="wrapper">
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page">
+        <?php echo $this->getChildHtml('header') ?>
+        <main class="cd-main-content">
+  			<div class="container category-wrapper margin-top-20 main-container col2-left-layout">
+                <div class="main container">
+                    <?php echo $this->getChildHtml('breadcrumbs') ?>
+                    <?php /*?><div class="preface grid-full in-col1"><?php echo $this->getChildHtml('preface') ?></div><?php */?>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 margin-top-20"><?php echo $this->getChildHtml('left') ?></div>
+                        <div class="col-xs-12 col-sm-9 margin-top-20">
+                            <?php echo $this->getChildHtml('global_messages') ?>
+                            <?php echo $this->getChildHtml('content') ?>
+                        </div>
+                    </div>                    
+                    <?php /*?><div class="postscript grid-full in-col1"><?php echo $this->getChildHtml('postscript') ?></div><?php */?>
+                </div>
+        	</div>
+        </main>
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+    </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

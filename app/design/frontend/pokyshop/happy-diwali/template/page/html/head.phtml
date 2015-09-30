@@ -10,19 +10,19 @@
 <?php echo $this->helper('core/js')->getTranslatorScript() ?>
 <?php echo $this->getIncludes() ?>
 <script>
-$(function(){
- var shrinkHeader = 300;
-  $(window).scroll(function() {
-    var scroll = getCurrentScroll();
-      if ( scroll >= shrinkHeader ) {
-           $('.header').addClass('shrink');
-        }
-        else {
-            $('.header').removeClass('shrink');
-        }
-  });
-function getCurrentScroll() {
-    return window.pageYOffset || document.documentElement.scrollTop;
-    }
+jQuery(function(){
+	var shrinkHeader = 300;
+	jQuery(window).scroll(function() {
+		var scroll = getCurrentScroll();
+		if ( scroll >= shrinkHeader ) {
+			jQuery('.header').addClass('shrink');
+		}
+		else {
+			jQuery('.header').removeClass('shrink');
+		}
+	});
+	function getCurrentScroll() {
+		return window.pageYOffset || document.documentElement.scrollTop;
+	}
 });
 </script>
