@@ -1,52 +1,81 @@
 <div class="cd-dropdown-wrapper"> <a class="cd-dropdown-trigger" href="#0">Menu</a>
-  <nav class="cd-dropdown"> <a href="#0" class="cd-close">Close</a>
-    <ul class="cd-dropdown-content">
-      <li class="has-children"> <a href="#">Home Decor</a>
-        <ul class="cd-secondary-dropdown is-hidden five-category">
-          <li class="go-back"><a href="#0">Menu</a></li>
-          <li class="see-all"><a href="#">All Home Decor</a></li>
-          <li><a href="#">Blue pottery</a></li>
-          <li><a href="#">Marble handicrafts</a></li>
-          <li><a href="#">Handmade &amp; Wooden Crafts</a></li>
-          <li><a href="#">Bedsheets</a></li>
-          <li><a href="#">Home &amp; Kitchen Gifts</a></li>
-        </ul>
-        <!-- .cd-secondary-dropdown -->
-      </li>
-      <li><a href="#">Vintage &amp; Antiques</a></li>
-      <li class="has-children"> <a href="#">Women</a>
-        <ul class="cd-secondary-dropdown is-hidden three-category">
-          <li class="go-back"><a href="#0">Menu</a></li>
-          <li class="see-all"><a href="#">All Women</a></li>
-          <li><a href="#">Footwear</a></li>
-          <li><a href="#">Traditional Wear</a></li>
-          <li class="has-children"> <a href="#">Fashion Accessories</a>
-            <ul class="is-hidden">
-              <li class="go-back"><a href="#0">Women</a></li>
-              <li class="see-all"><a href="#">Fashion Accessories</a></li>
-              <li><a href="#">Fashion Necklace</a></li>
-              <li><a href="#">Fashion Earrings</a></li>
-            </ul>
-          </li>
-        </ul>
-        <!-- .cd-secondary-dropdown -->
-      </li>
-      <li class="has-children"> <a href="#">Festive Shop</a>
-        <ul class="cd-secondary-dropdown is-hidden three-category">
-          <li class="go-back"><a href="#0">Menu</a></li>
-          <li class="see-all"><a href="#">All Festive Shop</a></li>
-          <li><a href="#0">Sweets</a></li>
-          <li><a href="#">Below 199</a></li>
-          <li><a href="#">Dry Fruits</a></li>
-        </ul>
-        <!-- .cd-secondary-dropdown -->
-      </li>
-      <li><a href="#">Make in India</a></li>
-    </ul>
-    <!-- .cd-dropdown-content -->
-  </nav>
+	<nav class="cd-dropdown"> <a href="#0" class="cd-close">Close</a>
+    	<?php 
+        $categoryId 		=	'2';	//	root category id of Default Category
+        $categoryCollection = 	Mage::getModel('catalog/category')->load($categoryId);
+        $levelOneCategoryArray	=	$categoryCollection->getChildrenCategories();
+        if(count($categoryCollection) > 0) { ?>
+        <?php if(count($levelOneCategoryArray) > 0) { ?>
+                <ul class="cd-dropdown-content">
+                  <?php foreach($levelOneCategoryArray as $key2) {
+                    $categoryCollection2 	= 	Mage::getModel('catalog/category')->load($key2['entity_id']);
+                    $levelTwoCategoryArray	= 	$categoryCollection2->getChildrenCategories()->toArray();
+					$childCategoryCount		=	count($levelTwoCategoryArray);
+					
+                   ?>
+                  <li <?php if( $childCategoryCount > 0) {?>class="has-children"<?php } ?>><a href="<?php echo $categoryCollection2->getUrl(); ?>"><?php echo $categoryCollection2->getName();?></a>
+                    <?php 
+					if( $childCategoryCount > 0) { ?>
+                        <ul class="cd-secondary-dropdown is-hidden <?php echo digitsToNumber($childCategoryCount)?>-category">
+                            <li class="go-back"><a href="#0">Menu</a></li>
+                            <li class="see-all"><a href="<?php echo $categoryCollection2->getUrl(); ?>">All <?php echo $categoryCollection2->getName();?></a></li>
+                            <?php foreach($levelTwoCategoryArray as $key3) {	
+                                $categoryCollection3 		= 	Mage::getModel('catalog/category')->load($key3['entity_id']);
+								$levelThreeCategoryArray	=	$categoryCollection3->getChildrenCategories()->toArray();
+								$childCategoryCount2		=	count($levelThreeCategoryArray);
+                            ?>
+                            <li <?php if( $childCategoryCount2 > 1) {?>class="has-children"<?php } ?>><a href="<?php echo $categoryCollection3->getUrl(); ?>"><?php echo $categoryCollection3->getName(); ?></a>
+							<?php 
+                                if( $childCategoryCount2 > 0) { ?>
+                                <ul class="is-hidden">
+                                  <li class="go-back"><a href="#0"><?php echo $categoryCollection2->getName();?></a></li>
+                                  <li class="see-all"><a href="<?php echo $categoryCollection3->getUrl(); ?>"><?php echo $categoryCollection3->getName(); ?></a></li>
+                                  <?php foreach($levelThreeCategoryArray as $key4) {	
+                                        $categoryCollection4 		= 	Mage::getModel('catalog/category')->load($key4['entity_id']);
+                                    ?>
+                                    <li><a href="<?php echo $categoryCollection4->getUrl(); ?>"><?php echo $categoryCollection4->getName(); ?></a></li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+                            </li>
+                            <?php  }	?>
+                        </ul>
+                    <?php }	//	end if  ?>
+                  </li>
+                  <?php  }	// end foreach levelOneCategoryArray	?>
+                </ul>
+            <?php } //	end if ?>
+        <?php } //	end if ?>
+  	</nav>
 </div>
 
+<?php
+function digitsToNumber($digit){
+	switch ($digit) {
+		case 1:
+			return 'one';
+			break;
+		case 2:
+			return 'two';
+			break;
+		case 3:
+			return 'three';
+			break;
+		case 4:
+			return 'four';
+			break;
+		case 5:
+			return 'five';
+			break;
+		case 6:
+			return 'six';
+			break;
+		default:
+			return 'three';
+			break;
+	}
+}
+?>
 <?php /*?><?php $_menu = $this->getHtml('level-top') ?>
 <?php if($_menu): ?>
 <nav id="nav">
