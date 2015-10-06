@@ -1,0 +1,18 @@
+<?php $_product 	= 	$this->getProduct();
+$productCondition	=	$_product->getCmzProductCondition();
+if($productCondition==''){
+	$buttonTitle = $this->__('Add to Cart');
+	if($_product->isSaleable()){ ?>
+        <button type="button" title="<?php echo $buttonTitle ?>" class="btn button-orange button--wayra" onclick="productAddToCartForm.submit(this)"><?php echo $buttonTitle ?></button>
+        <?php if(!$_product->isGrouped()){ ?>
+                <?php /*?><label for="qty"><?php echo $this->__('Qty:') ?></label><?php */?>
+                <input type="hidden" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        <?php }
+		echo $this->getChildHtml('', true, true); ?>
+<?php }
+}else{
+	$customerDetails	=	$_product->getCmzCustomerDetails();?>
+	<div class="add-to-cart"><?php echo $customerDetails;?></div>
+<?php 
+}
+?>

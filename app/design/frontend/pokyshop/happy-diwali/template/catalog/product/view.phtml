@@ -12,125 +12,146 @@
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
+
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="product-view nested-container" itemscope itemtype="http://schema.org/Product">
+<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+	<div class="no-display">
+    <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+    <input type="hidden" name="related_product" id="related-products-field" value="" />
+  </div>
+  	<?php echo $this->getChildHtml('media') ?>
+  	<div class="col-sm-6 margin-top-30 col-xs-12 single-product-detail">
+  		<div class="row">
+  			<div class="col-sm-6 col-xs-12">
+  				<ul class="tabs clearfix">
+					<li>
+                    	<input type="radio" name="tabs" id="tab1" checked />
+                        <label for="tab1" class="tab-label">Details &amp; Shopping</label>
+                        <div id="tab-content1" class="tab-content">
+                          <div class="product-name" itemscope itemtype="http://schema.org/Product">
+                            <h3 itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h3>
+                          </div>
+                          <?php //echo $this->getReviewsSummaryHtml($_product, 'aggregate', true); //be the first to review ?>
+                          <p>
+                            <?php if ($_product->getShortDescription()){ ?>
+                          <div class="short-description">
+                            <div class="std" itemprop="description"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                          </div>
+                          <?php }?>
+                          <span class="strong">Details:</span> <?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description') ?> <br />
+                          <span class="strong">SKU:</span> <?php echo $_product->getSku();?>
+                          </p>
+                          <div class="margin-top-20">
+<?php 
+if (!$this->hasOptions()){ //add to cart when no options for SP
+	if($_product->isSaleable()){ 
+		echo $this->getChildHtml('addtocart');
+	} 
+	echo $this->getChildHtml('extra_buttons');
+}
+?>
 
-    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-    
-        <div class="no-display">
-            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-            <input type="hidden" name="related_product" id="related-products-field" value="" />
-        </div>
-
-		<?php
-			//Calculate the width (in grid units) of the product page columns
-			$imgColUnits = $theme->getCfg('product_page/image_column');
-			$primaryColUnits = $theme->getCfg('product_page/primary_column');
-			$secondaryColUnits = $theme->getCfg('product_page/secondary_column');
-			
-			if (empty($secondaryColUnits))
-			{
-				$primaryColUnits += 12 - ($imgColUnits + $primaryColUnits);
-			}
-		?>
-
-        <div class="product-img-box grid12-<?php echo $imgColUnits; ?>">
-            <?php echo $this->getChildHtml('media') ?>
-            <?php //Product labels
-				echo $this->helper('ultimo/labels')->getLabels($_product);
-			?>
-        </div>
-        
-        <div class="product-shop grid12-<?php echo $primaryColUnits; ?>">
-
-            <div class="product-name" itemscope itemtype="http://schema.org/Product">
-                <h1 itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
-            </div>
-            
-            <?php echo $this->getReviewsSummaryHtml($_product, 'aggregate', true); //reviews ?>
-            
-            <?php if ($_product->getShortDescription()): ?>
-                <div class="short-description">
-                    <div class="std" itemprop="description"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
-                </div>
-            <?php endif;?>
-            
-            <?php if ($extrahint_html = $this->getChildHtml('extrahint')): //qty increments ?>
-                <div class="extrahint-wrapper"><?php echo $extrahint_html; ?></div>
-            <?php endif; ?>
-            
-            <div class="product-type-data"><?php echo $this->getChildHtml('product_type_data'); ?></div>
-            
-            <?php echo $this->getTierPriceHtml(); //tier prices ?>
-
-            <?php if (!$this->hasOptions()): //add to cart when no options ?>
-                <?php if($_product->isSaleable()): ?>
-                    <div class="add-to-box">
-                        <?php echo $this->getChildHtml('addtocart') ?>
+<?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+<?php if ($container2_html = $this->getChildChildHtml('container2', '', true, true)): ?>
+<div class="box-additional grid-full">
+  <div class="container2-wrapper"><?php echo $container2_html; ?></div>
+</div>
+<?php endif; ?>
+<?php endif; ?>
+                            <a class="btn button-orange button--wayra btn-popup" href="#popup1">Bulk Enquiry</a> </div>
+                        </div>
+                    </li>
+					<!--review form-->
+  					<li>
+                        <input type="radio" name="tabs" id="tab2" />
+                        <label for="tab2" class="tab-label">Reviews</label>
+                        <div id="tab-content2" class="tab-content">
+                        <h3>Write Your Review</h3>
+                      <form>
+                        <div class="form-group">
+                          <label for="name">Your Name</label>
+                          <input type="text" class="form-control" id="name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                          <label for="customer-review">Your Review</label>
+                          <textarea class="form-control" id="customer-review" placeholder="Review">
+                    </textarea>
+                        </div>
+                        <button type="submit" class="btn button-orange button--wayra">Submit</button>
+                      </form>
                     </div>
-                <?php endif; ?>
-                <?php echo $this->getChildHtml('extra_buttons') ?>
-            <?php endif; ?>
+                    </li>
+				</ul>
+			</div>
+			<div class="col-sm-6 col-xs-12">
+              <div class="product-option price-options clearfix">
+                <div class="border-bottom-light clearfix">
+                  <div class="prices pull-left">
+                    <dl class="primary clearfix">
+                      <dt class="wl-access-aid">Price:</dt>
+                      <?php echo $this->getChildHtml('product_type_data'); ?>
+                      <dd class="price"> <sup>Rs.</sup><span class="rupee">6,518</span><sup class="cents">.16</sup> </dd>
+                    </dl>
+                  </div>
+                  <?php //die;?>
+                  <div class="pull-right text-right"> <a href="#" class="btn button-orange button--wayra btn-sm"> <span class="wl-button wl-button--simple">AVAILABILITY</span> </a> </div>
+                </div>
+                
+	<?php
+    if ($_product->isSaleable() && $this->hasOptions()){ // add to cart for CP
+        if ($container1_html = $this->getChildChildHtml('container1', '', true, true)){ ?>
+    <div class="container1-wrapper"><?php echo $container1_html; ?></div>
+    <?php }
+    }?>
 
-            <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
-                <?php if ($container1_html = $this->getChildChildHtml('container1', '', true, true)): ?>
-                    <div class="container1-wrapper"><?php echo $container1_html; ?></div>
-                <?php endif; ?>
-            <?php endif;?>
-            
-            <?php if ($addtoBoxHtml = $this->getChildHtml('addto')): //compare, wishlist ?>
-                <div class="action-box addto-textlink clearer">
-					<?php echo $addtoBoxHtml; ?>
-					<?php if ($this->canEmailToFriend()): ?>
-                    	<p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
-                    <?php endif; ?>
-				</div>
-            <?php endif; ?>
-            
-            <?php echo $this->getChildHtml('sharing') ?>
-            
-            <?php echo $this->getChildHtml('alert_urls'); //alerts ?>
-            <?php echo $this->getChildHtml('other'); ?>
-            <?php echo $this->getChildHtml('product_primary_bottom_placeholder'); //Placeholder for extensions ?>
-            
-            <?php if ($tmpHtml = $this->getChildHtml('block_product_primary_bottom')): ?>
-                <div class="block_product_primary_bottom"><?php echo $tmpHtml; ?></div>
-            <?php endif; ?>
-
-        </div> <!-- end: product-shop -->
-        
-        <?php if (!empty($secondaryColUnits)): ?>
-            <div class="product-secondary-column grid12-<?php echo $secondaryColUnits; ?>">
-            	<div class="inner">
-
-					<?php //Placeholder for extensions ?>
-					<?php if ($tmpHtml = trim($this->getChildHtml('product_secondary_top_placeholder'))): ?>
-						<div class="feature-wrapper bottom-border"><?php echo $tmpHtml; ?></div>
-                    <?php endif; ?>
-					<?php echo '<div class="block_product_replace_related">'.$this->getChildHtml('related_products').'</div>';?>
-                    
-                    <?php if ($tmpHtml = $this->getChildHtml('block_product_secondary_bottom')): ?>
-                        <div class="block_product_secondary_bottom"><?php echo $tmpHtml; ?></div>
-                    <?php endif; ?>
-                    
-                    <?php //echo $this->getChildHtml('additional'); ?>
-                    
-                    
-
-				</div>
-            </div> <!-- end: product-secondary-column -->
-        <?php endif; ?>
-
-        <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
-			<?php if ($container2_html = $this->getChildChildHtml('container2', '', true, true)): ?>
-        		<div class="box-additional grid-full">
-					<div class="container2-wrapper"><?php echo $container2_html; ?></div>
-				</div>
-        	<?php endif; ?>
-        <?php endif; ?>
-
-    </form>
-    <script type="text/javascript">
+	<div class="select-size padding-top-20">
+      <div class="clearfix">
+        <div class="pull-left">Select a size</div>
+        <div class="pull-right text-right"> <a href="#" class="btn button-orange button--wayra btn-sm">CHART</a> </div>
+      </div>
+      <ul class="list-inline">
+        <li><a href="#">XS</a></li>
+        <!--
+-->
+        <li><a href="#">S</a></li>
+        <!--
+-->
+        <li><a href="#">M</a></li>
+        <!--
+-->
+        <li><a href="#">L</a></li>
+      </ul>
+    </div>
+                
+                <?php //die;?>
+              </div>
+            </div>
+		</div>
+	</div>
+	<div class="col-sm-2 col-xs-12 margin-top-30 related-product">
+  <ul class="list-group">
+    <li class="list-group-item"><i class="fa fa-plane"></i><span>We will send this product in 7 days.</span></li>
+    <li class="list-group-item"><i class="fa fa-mobile-phone"></i><span>Call us now for more info about our products.</span></li>
+    <li class="list-group-item"><i class="fa fa-arrow-left"></i><span>Return purchased items and get all your money back.</span></li>
+  </ul>
+  <?php echo $this->getChildHtml('related_products');?> </div>
+<?php
+        //echo $this->getChildHtml('extrahint');
+        //echo $this->getChildHtml('info_tabs');
+        /*echo $this->getChildHtml('product_additional_data');
+		echo $this->getTierPriceHtml(); //tier prices
+		//echo $this->getChildHtml('sharing');
+		echo $this->getChildHtml('alert_urls'); //alerts
+		echo $this->getChildHtml('other');
+		echo $this->getChildHtml('additional');*/
+		?>
+</form>
+	<script type="text/javascript">
     //<![CDATA[
         var productAddToCartForm = new VarienForm('product_addtocart_form');
         productAddToCartForm.submit = function(button, url) {
@@ -174,98 +195,54 @@
         }.bind(productAddToCartForm);
     //]]>
     </script>
-    <!-- end of product-essential (class was removed) -->
+</div>
+<!-- end: product-view --> 
 
-
-
-	<?php //Product collaterals ?>
-    <?php
-    	$section = array();
-		
-		//Related products 
-		//---------------------------------------------------------------------------
-		/*$replaceRelated = $theme->getCfg('product_page/replace_related');
-		if ($replaceRelated == 1) //don't replace with static block
-		{
-			if ($tmpHtml = trim($this->getChildHtml('catalog.product.related')))
-				$section['related'] = $tmpHtml;
-			//$section['related'] = trim($this->getChildHtml('catalog.product.related'));
-		}
-		elseif ($replaceRelated == 2) //if related is empty, replace with static block
-		{
-			if ($tmpHtml = trim($this->getChildHtml('catalog.product.related')))
-				$section['related'] = $tmpHtml;
-			else //related empty
-				if ($tmpHtml = $this->getChildHtml('block_product_replace_related'))
-					$section['related'] = '<div class="block_product_replace_related">'. $tmpHtml .'</div>';
-		}
-		elseif ($replaceRelated == 3) //replace with static block
-		{
-			if ($tmpHtml = $this->getChildHtml('block_product_replace_related'))
-				$section['related'] = '<div class="block_product_replace_related">'. $tmpHtml .'</div>';
-		}*/
-		
-
-		//Up-sell products
-		//---------------------------------------------------------------------------
-		$replaceUpsell = $theme->getCfg('product_page/replace_upsell');
-		if ($replaceUpsell == 1) //don't replace with static block
-		{
-			if ($tmpHtml = trim($this->getChildHtml('upsell_products')))
-				$section['upsell'] = $tmpHtml;
-			//$section['upsell'] = $this->getChildHtml('upsell_products');
-		}
-		elseif ($replaceUpsell == 2) //if upsell is empty, replace with static block
-		{
-			if ($tmpHtml = trim($this->getChildHtml('upsell_products')))
-				$section['upsell'] = $tmpHtml;
-			else //upsell empty
-				if ($tmpHtml = $this->getChildHtml('block_product_replace_upsell'))
-					$section['upsell'] = '<div class="block_product_replace_upsell">'. $tmpHtml .'</div>';
-		}
-		elseif ($replaceUpsell == 3) //replace with static block
-		{
-			if ($tmpHtml = $this->getChildHtml('block_product_replace_upsell'))
-				$section['upsell'] = '<div class="block_product_replace_upsell">'. $tmpHtml .'</div>';
-		}
-		
-		//Compute grid units etc. for collateral blocks
-		//---------------------------------------------------------------------------
-		$sidebarGridClass 	= 'grid12-3';
-		$tabsGridClass 		= 'grid-full';
-		$upsellGridClass 	= 'grid-full';
-		$upsellClasses = '';
-		
-		if (isset($section['related']))
-		{
-			$tabsGridClass		= 'grid12-9';
-			$upsellGridClass	= 'grid12-9';
-			$upsellClasses = 'in-col2'; //If sidebar displayed, upsell slider is narrow
-		}
-	?>
-    
-    
-    <?php //Display collateral blocks
-		  //--------------------------------------------------------------------------- ?>
-    
-	<div class="box-additional box-tabs <?php echo $tabsGridClass; ?>">
-    	<?php $info_tabs_html = $this->getChildHtml('info_tabs');
-			if (trim($info_tabs_html)) echo $info_tabs_html; ?>
-
-		<?php //Open the "Reviews" tab, when "X Review(s)" or "Be the first to review this product" links are clicked ?>
-		<script type="text/javascript">
-			jQuery(function($){$("#goto-reviews, #goto-reviews-form").click(function(){if($("#product-tabs").hasClass("accor")){$("#product-tabs .tabs-panels").data("tabs").click($(".tabs-panels .acctab").index($("#acctab-tabreviews")))}else{$("#product-tabs .tabs").data("tabs").click($("#tab-tabreviews").index())}})});
-		</script>
-        
-        <?php echo $this->getChildHtml('product_additional_data') ?>
-	</div> <!-- end: box-tabs -->
-    
-    <?php
-		if (isset($section['related']))
-			echo '<div class="box-additional box-sidebar '. $sidebarGridClass .'"><div class="box-sidebar-inner">'. $section['related'] .'</div></div>';	
-		if (isset($section['upsell']))
-			echo '<div class="box-additional box-up-sell '. $upsellGridClass .' '. $upsellClasses .'">'. $section['upsell'] .'</div>';
-	?>
-    
-    
-</div> <!-- end: product-view -->
+<!--bulk enquiry form-->
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <h3 class="no-margin">For bulk enquiry</h3>
+    <a class="close" href="#">&times;</a>
+    <div class="content margin-top-20">
+      <form class="form-horizontal">
+        <div class="form-group row">
+          <label for="userName" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="userName" placeholder="Your Name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="userContact" class="col-sm-2 control-label">Contact</label>
+          <div class="col-sm-10">
+            <input type="tel" class="form-control" id="userContact" placeholder="your Contact">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="userEmail" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="userEmail" placeholder="your Contact">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="quantity " class="col-sm-2 control-label">Quantity</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="quantity" placeholder="Quantity">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="product" class="col-sm-2 control-label">Product</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="product" placeholder="Product">
+          </div>
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="moreOrder" class="control-label">Have more to order, write here</label>
+          <textarea class="form-control"></textarea>
+        </div>
+        <div class="form-group col-xs-12">
+          <button type="submit" class="btn button-orange button--wayra">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
