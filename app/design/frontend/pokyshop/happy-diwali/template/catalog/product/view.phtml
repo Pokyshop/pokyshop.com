@@ -105,30 +105,10 @@ if (!$this->hasOptions()){ //add to cart when no options for SP
 	<?php
     if ($_product->isSaleable() && $this->hasOptions()){ // add to cart for CP
         if ($container1_html = $this->getChildChildHtml('container1', '', true, true)){ ?>
-    <div class="container1-wrapper"><?php echo $container1_html; ?></div>
+			<div class="select-size padding-top-20"><?php echo $container1_html; ?></div>
     <?php }
     }?>
-
-	<div class="select-size padding-top-20">
-      <div class="clearfix">
-        <div class="pull-left">Select a size</div>
-        <div class="pull-right text-right"> <a href="#" class="btn button-orange button--wayra btn-sm">CHART</a> </div>
-      </div>
-      <ul class="list-inline">
-        <li><a href="#">XS</a></li>
-        <!--
--->
-        <li><a href="#">S</a></li>
-        <!--
--->
-        <li><a href="#">M</a></li>
-        <!--
--->
-        <li><a href="#">L</a></li>
-      </ul>
-    </div>
-                
-                <?php //die;?>
+    
               </div>
             </div>
 		</div>

@@ -144,13 +144,13 @@
                 </a>
                 
                 <?php //Add-to links
-					if ($gc['display_addtolinks'] != 0 && $gc['addtolinks_simple'])
+					/*if ($gc['display_addtolinks'] != 0 && $gc['addtolinks_simple'])
 					{
 						if ($gc['display_addtolinks'] == 1) //Display on hover
 							echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-onimage display-onhover');
 						else //Always display
 							echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-onimage');
-					}
+					}*/
 				?>
                 
                 <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, substr($_product->getName(),0,50), 'name') ?></a></h2>
