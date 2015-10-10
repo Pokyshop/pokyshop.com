@@ -1,0 +1,21 @@
+.cart-wrapper .shopping-cart .table a {color:#181a1c;}
+.cart-wrapper .shopping-cart .table input{width:30px;}
+.cart-wrapper .shopping-cart .table input[type=checkbox] { display:none; } /* to hide the checkbox itself */
+.cart-wrapper .shopping-cart .table input[type=checkbox] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+}
+.cart-wrapper .shopping-cart .table label{font-size:23px; color:#555}
+.cart-wrapper .shopping-cart .table input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
+.cart-wrapper .shopping-cart .table input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+.cart-wrapper .shopping-cart .table input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
+.cart-wrapper .shopping-cart .table input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
+.cart-wrapper .shopping-cart .table i{font-size:23px; padding:0; color:#555}
+.cart-wrapper .shopping-cart .table > tbody > tr > td{vertical-align:middle;}
+.cart-section tr:first-child td{border-top:none;}
+.cart-section a{color:#181a1c; font-size:12px;}
+.cart-section .table-responsive {padding:10px; background:#f2f2f2;}
+.cart-wrapper p{font-size:13px;}
+.cart-wrapper label{font-weight:lighter;}
+.cart-wrapper h4 {color:#E8784C;}
+
