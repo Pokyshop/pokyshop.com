@@ -1,5 +1,13 @@
-<?php /*?>S:VA - Start Page Loading Effect<?php */?>
-<style>
+<?php /*?>S:VA - Start Page Loading Effect<?php */
+$request        = Mage::app()->getRequest();
+$moduleName     = $request->getModuleName();
+$controllerName = $request->getControllerName();
+$actionName     = $request->getActionName();
+/*echo 'moduleName '.$moduleName;
+echo 'controllerName '.$controllerName;
+echo 'actionName '.$actionName;*/
+if($moduleName!='onepage'){?>
+<style type="text/css">
 .spinner{text-align:center; width:100%; margin:19% 0; color:#f77c4c;}
 #spinner {
 	position: fixed; left: 0px; 	top: 0px; width: 100%; 	height: 100%; 	z-index: 9999;
@@ -12,7 +20,8 @@ jQuery(window).load(function() {
 })
 </script>
 <div id="spinner"><div class="spinner"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>
-<?php /*?>S:VA - End Page Loading Effect<?php */?>
+<?php }
+/*?>S:VA - End Page Loading Effect<?php */?>
 
 <?php	
 	$theme = $this->helper('ultimo');
@@ -60,11 +69,12 @@ jQuery(window).load(function() {
     <div class="container">
       <div class="social-links left">
         <ul>
-          <li><a title="Follow us on Twitter" target="_blank" href="https://twitter.com/pokyshop" class="first"> <img alt="twitter" src="<?php echo $this->getSkinUrl('images/social/twitter.png') ?>"> </a> </li>
-          <li><a title="Join us on Facebook" target="_blank" href="https://www.facebook.com/pages/pokyshopcom/335131776671161"> <img alt="facebook" src="<?php echo $this->getSkinUrl('images/social/facebook.png') ?>"> </a></li>
-          <li><a title="Join us on Google Plus" target="_blank" href="https://plus.google.com/u/0/104184118365463258982"> <img alt="google" src="<?php echo $this->getSkinUrl('images/social/googleplus.png') ?>"> </a></li>
-          <li><a title="Follow us on pinterest" target="_blank" href="https://www.pinterest.com/pokyshop/"> <img alt="pinterest" src="<?php echo $this->getSkinUrl('images/social/pinterest.png') ?>"> </a></li>
-          <li><a title="Follow us on instagram" target="_blank" href="https://instagram.com/pokyshop/"> <img alt="instagram" src="<?php echo $this->getSkinUrl('images/social/instagram.png') ?>"> </a></li>
+          <li><a title="Follow us on Twitter" target="_blank" href="https://twitter.com/pokyshop" class="first"> <i class="fa fa-twitter"></i> </a> </li>
+          <li><a title="Join us on Facebook" target="_blank" href="https://www.facebook.com/pages/pokyshopcom/335131776671161"> <i class="fa fa-facebook"></i> </a></li>
+          <li><a title="Join us on Google Plus" target="_blank" href="https://plus.google.com/u/0/104184118365463258982"> <i class="fa fa-google-plus"></i> </a></li>
+          <li><a title="Follow us on pinterest" target="_blank" href="https://www.pinterest.com/pokyshop/"> <i class="fa fa-pinterest-p"></i> </a></li>
+          <li><a title="Follow us on instagram" target="_blank" href="https://instagram.com/pokyshop/"> <i class="fa fa-instagram"></i> </a></li>
+          <li><a title="Connect on linkedin" target="_blank" href="https://www.linkedin.com/company/pokyshop-com"> <i class="fa fa-linkedin"></i> </a></li>
         </ul>
       </div>
       <div class="hide-sticky"><?php echo $this->getChildHtml('cart_sidebar'); ?></div>
@@ -99,7 +109,7 @@ jQuery(window).load(function() {
       </div>
       <?php echo $this->getChildHtml('topContainer'); ?>
       <div class="header-main v-grid-container">
-        <div class="logo-wrapper grid12-4 v-grid">
+        <div class="logo-wrapper grid12-3 v-grid">
           <?php if ($this->getIsHomePage()):?>
           <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
           <?php else:?>
@@ -112,7 +122,7 @@ jQuery(window).load(function() {
         <div class="header-top-search-wrapper grid12-4 v-grid clearer"> <?php echo $this->getChildHtml('topSearch'); ?>
           <?php /*?><a class="advanced-search-link" href="<?php echo Mage::getURL(''); ?>catalogsearch/advanced/"><?php print $this->__('Advanced Search'); ?></a><?php */?>
         </div>
-        <div class="user-menu clearer grid12-4 v-grid">
+        <div class="user-menu clearer grid12-6 v-grid">
           <?php /*?><?php echo $this->getChildHtml('cart_sidebar'); ?>
                     <div class="after-mini-cart"></div><?php */?>
           <div class="top-links show-separators">
@@ -145,7 +155,21 @@ jQuery(window).load(function() {
   </div>
   </div>
   <!-- end: header -->
-  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+  
+  <?php if(!Mage::helper('sarah')->getUserName()){?>
+	<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('ajaxlogin/login_popup.phtml')->toHtml();?>
+	<?php } ?>
+
+  <div class="nav-container">
+    <div class="nav container clearer<?php if($navCss) echo " " . implode(" ", $navCss); ?>"> <?php echo $this->getChildHtml('topMenu') ?> </div>
+    <!-- end: nav --> 
+  </div>
+  <!-- end: nav-container --> 
+  
+</div> 
+<!-- end: header-container -->
+
+<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
     <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
       <ul class="cd-switcher">
         <li><a href="#0">Sign in</a></li>
@@ -218,27 +242,20 @@ jQuery(window).load(function() {
       <a href="#0" class="cd-close-form">Close</a> </div>
     <!-- cd-user-modal-container --> 
   </div>
-  <div class="nav-container">
-    <div class="nav container clearer<?php if($navCss) echo " " . implode(" ", $navCss); ?>"> <?php echo $this->getChildHtml('topMenu') ?> </div>
-    <!-- end: nav --> 
-  </div>
-  <!-- end: nav-container --> 
   
-</div> 
-<!-- end: header-container -->
 
-<style>
+<style type="text/css">
 .fixed {position: fixed;top: 0;background-color:#FFFFFF;}
 #stickyHeader {width: 100%;z-index:1000; }
 </style>
-<?php /*?><script>
+<script>
 var sticky 		= document.querySelector('#stickyHeader');
 var origOffsetY = sticky.offsetTop;
 function onScroll(e) {
 	window.scrollY >= origOffsetY ? sticky.classList.add('fixed') : sticky.classList.remove('fixed');
 }
 document.addEventListener('scroll', onScroll);
-</script><?php */?>
+</script>
 <?php /* Commented by Vaseem to resolve js error?><script type="text/javascript">
 function deselect(e) {
   $('.pop').slideFadeToggle(function() {
