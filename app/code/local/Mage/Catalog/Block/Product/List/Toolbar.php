@@ -234,7 +234,7 @@ class Mage_Catalog_Block_Product_List_Toolbar extends Mage_Core_Block_Template
         }*/
 		//	S:VA	Display the most recently added products first on catalog pages
 		if ($this->getCurrentOrder()) {
-			if(($this->getCurrentOrder())=='position'){
+			if( ($this->getCurrentOrder()=='position') && ($this->getCurrentDirection()=='asc') ){
 			  $this->_collection->setOrder('entity_id','desc');
 			}else {
 				$this->_collection->setOrder($this->getCurrentOrder(),$this->getCurrentDirection());
